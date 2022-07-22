@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.appcompat.widget.AppCompatTextView android:layout_width="match_parent"
+    android:layout_height="@dimen/_30sdp"
+    android:drawablePadding="@dimen/_12ssp"
+    android:drawableStart="@drawable/ic_baseline_location_city_24"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:textSize="16sp"
+    android:fontFamily="@font/mplus_rounded_1c_regular"
+    android:layout_centerHorizontal="true"
+    android:padding="6dp"
+    android:textColor="#555555"
+    android:background="@drawable/custom_input"
+    android:ems="10" />

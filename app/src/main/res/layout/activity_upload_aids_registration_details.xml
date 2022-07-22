@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".ui.registrationportal.UploadAidsRegistrationDetailsActivity">
+    
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:strokeWidth="@dimen/_1sdp"
+            app:strokeColor="@color/pink">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:visibility="gone"
+                    android:cropToPadding="true"
+                    android:id="@+id/disabilityCertificate"
+                    android:src="@drawable/elon"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disability certificate"
+                    android:padding="@dimen/_5sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                    android:textColor="@color/black"
+                    android:layout_margin="@dimen/_5sdp"
+                    />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:text="A disability certificate (also known as PwD certificate or PH certificate or handicap certificate) is a document that certifies the type and extent of holder's disability"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/addDisabilityCertificate"
+                        android:drawableStart="@drawable/ic_baseline_image_24"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:text="Add disability certificate"
+                        android:drawablePadding="@dimen/_5sdp"
+                        app:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:textColor="@color/black"
+                     />
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:strokeWidth="@dimen/_1sdp"
+            app:strokeColor="@color/pink">
+
+            <LinearLayout
+                android:layout_width="399dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/passportSizePhoto"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    android:cropToPadding="true"
+                    android:src="@drawable/elon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                        android:padding="@dimen/_5sdp"
+                        android:text="Passport size photo"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:padding="@dimen/_5sdp"
+                        android:text="The photo‐print should be clear and with a continuous‐tone quality. It should have full face, front view, eyes open.
+"
+                        android:textColor="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/addPassportSizePhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:drawableStart="@drawable/ic_baseline_image_24"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:text="Add passport size photo"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        app:fontFamily="@font/mplus_rounded_1c_regular" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:strokeWidth="@dimen/_1sdp"
+            app:strokeColor="@color/pink">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:visibility="gone"
+                    android:cropToPadding="true"
+                    android:id="@+id/ivIncomeCertificate"
+                    android:src="@drawable/elon"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Income certificate"
+                        android:padding="@dimen/_5sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                        android:textColor="@color/black"
+                        android:layout_margin="@dimen/_5sdp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:text="Income certificate is an official statement provided to the citizen by the state government confirming his/her annual income. Income certificates states the different sources of income of an individual."/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/addIncomeCertificate"
+                        android:drawableStart="@drawable/ic_baseline_image_24"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Add disability certificate"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:layout_margin="@dimen/_5sdp"
+                        app:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:textColor="@color/black"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:strokeWidth="@dimen/_1sdp"
+            app:strokeColor="@color/pink">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:visibility="gone"
+
+                    android:cropToPadding="true"
+                    android:id="@+id/ivIdentityProof"
+                    android:src="@drawable/elon"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Identity proof"
+                        android:padding="@dimen/_5sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                        android:textColor="@color/black"
+                        android:layout_margin="@dimen/_5sdp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:text="Currently adhaar card is used as identity proof."/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/addIdentityProof"
+                        android:drawableStart="@drawable/ic_baseline_image_24"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:text="Add disability certificate"
+                        android:drawablePadding="@dimen/_5sdp"
+                        app:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:textColor="@color/black"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:strokeWidth="@dimen/_1sdp"
+            app:strokeColor="@color/pink">
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:visibility="gone"
+                android:cropToPadding="true"
+                android:id="@+id/ivAddressProof"
+                android:src="@drawable/elon"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="match_parent"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address proof"
+                    android:padding="@dimen/_5sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                    android:textColor="@color/black"
+                    android:layout_margin="@dimen/_5sdp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:text="Upload address proof for example EB-bill, water-tax bill etc..."/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/addAddressProof"
+                    android:drawableStart="@drawable/ic_baseline_image_24"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Add disability certificate"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:drawablePadding="@dimen/_5sdp"
+                    app:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/uploadFilesForVerification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_button_enabled"
+            android:text="Upload files for verification"
+            android:textColor="@color/white"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

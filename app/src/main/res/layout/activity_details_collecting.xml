@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.onboarding.DetailsCollectingActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_margin="@dimen/_10ssp"
+            app:lottie_rawRes="@raw/logo_lottie"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_60ssp"
+            android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+            android:text="ADIP regestration Portal"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20ssp"
+        android:layout_marginTop="@dimen/_2ssp"
+        android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+        android:text="Please fill the details!!"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10ssp"
+        app:cardCornerRadius="@dimen/_2sdp"
+        android:backgroundTint="@color/white"
+ >
+
+        <LinearLayout
+            android:padding="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_baseline_person_24"
+                android:drawablePadding="@dimen/_12ssp"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:paddingStart="@dimen/_12ssp" />
+
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etUdidNo"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_baseline_card_membership_24"
+                android:drawablePadding="@dimen/_12ssp"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:paddingStart="@dimen/_12ssp" />
+
+
+
+
+
+            <TextView
+                android:id="@+id/notHaveUdid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not have UDID card? then click here."
+                android:layout_gravity="right"
+                android:layout_margin="@dimen/_5sdp"
+                android:textStyle="italic|bold"
+                android:fontFamily="@font/mplus_rounded_1c_black"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:padding="@dimen/_5sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="@dimen/_12ssp"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:paddingStart="@dimen/_12ssp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                tools:context=".MainActivity">
+
+                <TextView
+                    android:id="@+id/tvStateSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:padding="6dp"
+                    android:text="State"
+                    android:textColor="@color/black" />
+
+
+                <Spinner
+                    android:id="@+id/stateSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/tvStateSpinner"
+                    android:layout_marginTop="@dimen/_2sdp" />
+
+                <TextView
+                    android:id="@+id/tvDistrictSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/stateSpinner"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:padding="6dp"
+                    android:text="District"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/districtSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/tvDistrictSpinner"
+                    android:layout_marginTop="@dimen/_2sdp" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnContine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/bg_button_enabled"
+                android:backgroundTint="@color/pink"
+                android:text="Continue"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From Knot Idea"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+        android:textColor="@color/pink"/>
+</LinearLayout>

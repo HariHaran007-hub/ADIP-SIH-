@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="@dimen/_8sdp"
+    app:strokeColor="@color/pinkFaded"
+    app:strokeWidth="@dimen/_2sdp"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:paddingBottom="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/headLinesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mplus_rounded_1c_black"
+            android:maxEms="5"
+            android:paddingStart="@dimen/_10ssp"
+            android:text="New ADIP registration portal application has bee created!!"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/headLinesTextView"
+            android:paddingStart="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/headLineImage"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/elon"
+                android:cropToPadding="true"
+                android:contentDescription="image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_10ssp"
+                android:maxEms="15"
+                android:text="New applivation was made and this applicatopn we have integrated google maps ans some oter new features in it and it will be goin to be a bigest hit"
+                android:textSize="@dimen/_13ssp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/mplus_rounded_1c_regular"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

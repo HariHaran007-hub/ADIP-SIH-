@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/ngoMapsFragment">
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.rcappstudio.adip.ui.news.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/ngoMapsFragment"
+        android:name="com.rcappstudio.adip.ui.NgoMapsFragment"
+        android:label="fragment_ngo_maps"
+        tools:layout="@layout/fragment_ngo_maps" />
+    <fragment
+        android:id="@+id/registrationCategoryFragment"
+        android:name="com.rcappstudio.adip.ui.registrationportal.RegistrationCategoryFragment"
+        android:label="fragment_registration_category"
+        tools:layout="@layout/fragment_registration_category" />
+</navigation>

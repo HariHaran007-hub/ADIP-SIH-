@@ -12,9 +12,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.databinding.ActivityDetailsCollectingBinding
+import com.rcappstudio.adip.utils.Constants
 import java.util.*
 
 
@@ -284,19 +287,28 @@ class DetailsCollectingActivity : AppCompatActivity() {
             return
         }
 
-        val intent = Intent(applicationContext, UploadProfileActivity::class.java)
+        checkDataValidity()
 
-        intent.putExtra(NAME, binding.etName.text.toString())
-        intent.putExtra(UDID_NUMBER, binding.etUdidNo.text.toString())
-        intent.putExtra(DATE_OF_BIRTH, binding.datePicker.text.toString())
-        intent.putExtra(STATE, binding.stateSpinner.selectedItem.toString())
-        intent.putExtra(DISTRICT, binding.districtSpinner.selectedItem.toString())
-        intent.putExtra(MOBILE_NO, mobileNo.toString())
+    }
 
-
-        startActivity(intent)
-
-
+    private fun checkDataValidity(){
+        FirebaseDatabase.getInstance().getReference("${Constants.USER_ID_LIST}/${binding.etUdidNo.text.toString()}")
+            .get().addOnSuccessListener {
+                if(it.exists()){
+                    //TODO: Show bottom sheet error dialog
+                    Toast.makeText(this , "UDID number alreday exist!!", Toast.LENGTH_LONG)
+                        .show()
+                } else{
+                    val intent = Intent(applicationContext, UploadProfileActivity::class.java)
+                    intent.putExtra(NAME, binding.etName.text.toString())
+                    intent.putExtra(UDID_NUMBER, binding.etUdidNo.text.toString())
+                    intent.putExtra(DATE_OF_BIRTH, binding.datePicker.text.toString())
+                    intent.putExtra(STATE, binding.stateSpinner.selectedItem.toString())
+                    intent.putExtra(DISTRICT, binding.districtSpinner.selectedItem.toString())
+                    intent.putExtra(MOBILE_NO, mobileNo.toString())
+                    startActivity(intent)
+                }
+            }
     }
 
     private fun openBrowser(){

@@ -28,5 +28,7 @@ class Constants {
         const val USER_ID_LIST = "userIdList"
         const val REQUEST_STATUS = "requestStatus"
         const val VERIFICATION_APPLIED = "verificationApplied"
+        const val UDID_NO_LIST = "udidNoList"
+        const val NEWS = "news"
     }
 }

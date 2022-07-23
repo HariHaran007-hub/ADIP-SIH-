@@ -7,8 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.databinding.FragmentNewsBinding
+import com.rcappstudio.adip.utils.Constants
+import java.util.*
 
 class NewsFragment : Fragment() {
 
@@ -24,6 +28,7 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         refreshLayoutSetup()
+        getNewsFromDatabase()
     }
 
     private fun refreshLayoutSetup(){
@@ -33,5 +38,17 @@ class NewsFragment : Fragment() {
                 binding.refreshLayout.isRefreshing = false
             }
         })
+    }
+
+    private fun getNewsFromDatabase(){
+        FirebaseDatabase.getInstance().getReference(Constants.NEWS).get()
+            .addOnSuccessListener { snapshot->
+                if(snapshot.exists()){
+                    for(s in snapshot.children){
+                        val news = s.getValue(NewsModel::class.java)
+                        Log.d("NewsData", "getNewsFromDatabase: ${news!!.headLines}")
+                    }
+                }
+            }
     }
 }

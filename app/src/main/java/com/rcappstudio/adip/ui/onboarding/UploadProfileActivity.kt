@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -34,6 +35,7 @@ import com.rcappstudio.adip.utils.Constants.Companion.DISTRICT
 import com.rcappstudio.adip.utils.Constants.Companion.PROFILE_IMAGE
 import com.rcappstudio.adip.utils.Constants.Companion.SHARED_PREF_FILE
 import com.rcappstudio.adip.utils.Constants.Companion.STATE
+import com.rcappstudio.adip.utils.Constants.Companion.UDID_NO_LIST
 import com.rcappstudio.adip.utils.Constants.Companion.USER
 import com.rcappstudio.adip.utils.Constants.Companion.USER_ID_LIST
 import com.rcappstudio.adip.utils.Constants.Companion.USER_PROFILE_PATH
@@ -92,7 +94,8 @@ class UploadProfileActivity : AppCompatActivity() {
         }
 
         binding.btnContinue.setOnClickListener {
-            storeToDatabase()
+            if(imageURI != null)
+                storeToDatabase()
         }
     }
 
@@ -161,6 +164,7 @@ class UploadProfileActivity : AppCompatActivity() {
         FirebaseDatabase.getInstance()
             .getReference("${USER_ID_LIST}/${FirebaseAuth.getInstance().uid!!}")
             .setValue(userIdList)
+        FirebaseDatabase.getInstance().getReference(UDID_NO_LIST).child(udidNo)
 
         FirebaseDatabase.getInstance().getReference(userProfilePath.toString()).setValue(userModel)
             .addOnSuccessListener {

@@ -308,6 +308,7 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
         FirebaseDatabase.getInstance().getReference("$userProfilePath/alreadyApplied")
             .setValue(true).addOnSuccessListener {
                 binding.uploadFilesForVerification.isEnabled = false
+                binding.uploadFilesForVerification.visibility = View.GONE
                 loadingDialog.isDismiss()
             }
     }

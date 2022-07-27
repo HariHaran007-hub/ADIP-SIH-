@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pinkFaded"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.HomeFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/profile"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:backgroundTint="@color/pinkFaded"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/cv__29__generated"
+                    android:orientation="horizontal"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:textColor="@color/black"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/supportChat"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/support"
+                    android:orientation="horizontal"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Support"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:textColor="@color/black"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/news"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/news"
+                    android:orientation="horizontal"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="News"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:textColor="@color/black"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/agency"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ngo"
+                    android:orientation="horizontal"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Agency"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:textColor="@color/black"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#6C6969"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recent updates: "
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/mplus_rounded_1c_regular"/>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_marginTop="@dimen/_4sdp"
+            android:id="@+id/updatesBanner"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#6C6969"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/mplus_rounded_1c_regular"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Scheme statistics: "/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Number of application: "/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="1000+ "/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="Number of  verifications: "/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="1000+ "/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#6C6969"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Latest news: "
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/mplus_rounded_1c_bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNews"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_160sdp"
+            android:layout_marginTop="@dimen/_10sdp"/>
+
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

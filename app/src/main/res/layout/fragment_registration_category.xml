@@ -4,13 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.registrationportal.RegistrationCategoryFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieFile"
+        android:visibility="gone"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_300sdp"
+        app:lottie_rawRes="@raw/verification"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12ssp"
+        android:textColor="@color/pink"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+        android:text="Already uploaded please see status bar for more information."/>
+
+
     <LinearLayout
+        android:id="@+id/llLayout"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/_8sdp"
+       android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_height="wrap_content">
@@ -49,28 +78,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
+                    android:text="⦿ Disability certificate"
                     android:paddingStart="@dimen/_20sdp"
                     android:textSize="@dimen/_12ssp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
+                    android:text="⦿ Passport size photo"
                     android:paddingStart="@dimen/_20sdp"
                     android:textSize="@dimen/_12ssp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
+                    android:text="⦿ Income certificate"
                     android:paddingStart="@dimen/_20sdp"
                     android:textSize="@dimen/_12ssp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
+                    android:text="⦿ Identity proof"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingBottom="@dimen/_4sdp"
+                    android:textSize="@dimen/_12ssp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:text="⦿ Address proof"
                     android:paddingStart="@dimen/_20sdp"
                     android:paddingBottom="@dimen/_4sdp"
                     android:textSize="@dimen/_12ssp"/>
@@ -100,32 +137,12 @@
                     android:fontFamily="@font/mplus_rounded_1c_bold"
                     android:textColor="@color/black"/>
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
-                    android:paddingStart="@dimen/_20sdp"
-                    android:textSize="@dimen/_12ssp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
-                    android:paddingStart="@dimen/_20sdp"
-                    android:textSize="@dimen/_12ssp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
-                    android:paddingStart="@dimen/_20sdp"
-                    android:textSize="@dimen/_12ssp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
+                    android:text="⦿ Orthopedic disability"
                     android:paddingStart="@dimen/_20sdp"
                     android:paddingBottom="@dimen/_4sdp"
                     android:textSize="@dimen/_12ssp"/>
@@ -133,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
+                    android:text="⦿ Visual disability"
                     android:paddingStart="@dimen/_20sdp"
                     android:paddingBottom="@dimen/_4sdp"
                     android:textSize="@dimen/_12ssp"/>
@@ -141,15 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
-                    android:paddingStart="@dimen/_20sdp"
-                    android:paddingBottom="@dimen/_4sdp"
-                    android:textSize="@dimen/_12ssp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
+                    android:text="⦿ Mentally and multiple disability"
                     android:paddingStart="@dimen/_20sdp"
                     android:paddingBottom="@dimen/_4sdp"
                     android:textSize="@dimen/_12ssp"/>
@@ -158,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_4sdp"
-                    android:text="⦿ All the required documents"
+                    android:text="⦿ Hearing disability"
                     android:paddingStart="@dimen/_20sdp"
                     android:paddingBottom="@dimen/_4sdp"
                     android:textSize="@dimen/_12ssp"/>
@@ -175,21 +184,6 @@
             android:textColor="@color/white"
             android:background="@drawable/bg_button_enabled"
             android:text="Continue"/>
-
-        <TextView
-            android:id="@+id/tvStatus"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12ssp"
-            android:textColor="@color/pink"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:padding="@dimen/_10sdp"
-            android:fontFamily="@font/mplus_rounded_1c_extra_bold"
-            android:text="Already uploaded please see status bar for more information."/>
-
-
 
     </LinearLayout>
 

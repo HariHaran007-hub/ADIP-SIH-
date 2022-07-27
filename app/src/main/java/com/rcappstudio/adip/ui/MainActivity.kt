@@ -1,23 +1,22 @@
 package com.rcappstudio.adip.ui
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.iid.FirebaseInstanceIdReceiver
 import com.google.firebase.messaging.FirebaseMessaging
 import com.rcappstudio.adip.R
-import com.rcappstudio.adip.data.model.AidsDoc
 import com.rcappstudio.adip.data.model.RequestStatus
-import com.rcappstudio.adip.data.model.UserModel
 import com.rcappstudio.adip.databinding.ActivityMainBinding
 import com.rcappstudio.adip.utils.Constants
 import com.rcappstudio.adip.utils.LoadingDialog
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        checkNetworkConnectivity()
         setContentView(binding.root)
         initBottomNavigationView()
         generateFcmToken()
@@ -51,33 +51,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initBottomNavigationView(){
-        binding.bottomNavMenu.setItemSelected(R.id.ngoLocation)
+        binding.bottomNavMenu.setItemSelected(R.id.home)
         binding.bottomNavMenu.setOnItemSelectedListener { item ->
             when(item){
-                R.id.news->{
-                    switchToFragment(R.id.newsFragment)
-                }
+               R.id.home->{
+                    switchToFragment(R.id.homeFragment)
+               }
                 R.id.ngoLocation->{
                     switchToFragment(R.id.ngoMapsFragment)
                 }
                 R.id.registrationPortal->{
                     switchToFragment(R.id.registrationCategoryFragment)
                 }
+                R.id.requestStatus->{
+                    switchToFragment(R.id.applicationStatusFragment)
+                }
             }
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu,menu)
-        return true
+    private fun checkNetworkConnectivity(){
+
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.support_chat -> startActivity(Intent(this, ChatActivity::class.java))
-        }
-        return super.onOptionsItemSelected(item)
-    }
+
 
     private fun getNavController(): NavController {
         return (supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment).navController
@@ -101,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        binding.bottomNavMenu.setItemSelected(R.id.ngoLocation)
+        binding.bottomNavMenu.setItemSelected(R.id.home)
     }
 
     private fun generateFcmToken(){
@@ -115,4 +112,5 @@ class MainActivity : AppCompatActivity() {
         val userPath = pref.getString(Constants.USER_PROFILE_PATH, null)
         FirebaseDatabase.getInstance().getReference("$userPath/fcmToken").setValue(token)
     }
+
 }

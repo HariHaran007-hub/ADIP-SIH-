@@ -951,4 +951,52 @@
         <item>Puducherry</item>
         <item>Yanam</item>
     </string-array>
+
+    <!--type of disability-->
+
+    <string-array name="array_disability_category">
+        <item>Select disability category</item>
+        <item>Orthopedic disability</item>
+        <item>Visual disability</item>
+        <item>Hearing disability</item>
+        <item>Mentally and multiple disability</item>
+    </string-array>
+
+    <string-array name="array_orthopedic_disability">
+        <item>Select aids</item>
+        <item>Tricycle</item>
+        <item>Wheel chair(adult and child)</item>
+        <item>Walking stick</item>
+        <item>Walker(foldable , non -foldable)</item>
+        <item>Rollator</item>
+        <item>Standing frame</item>
+        <item>Quadripod</item>
+        <item>Tetrapod</item>
+        <item>Auxiliary crutches</item>
+        <item>Elbow crutches</item>
+        <item>CP chair</item>
+        <item>Corner chair</item>
+    </string-array>
+
+    <string-array name="array_visual_disability">
+        <item>Accessible mobile phones, Laptop, Braille note taker , Brallier (school going students)</item>
+        <item>Learning equipment</item>
+        <item>Communication equipment</item>
+        <item>Braille attachment for telephone for deafblind persons</item>
+        <item>Low vision Aids</item>
+        <item>Special mobility aids(for muscular dystrophy and cerebral palsy person)</item>
+    </string-array>
+
+    <string-array name="array_hearing_disability">
+        <item>Hearing aids</item>
+        <item>Educational kits</item>
+        <item>Assistive and alarm devices</item>
+        <item>Cochlear implant</item>
+    </string-array>
+
+    <string-array name="array_mental_multiple_disability">
+        <item>Teaching learning material kit</item>
+    </string-array>
+
+
 </resources>

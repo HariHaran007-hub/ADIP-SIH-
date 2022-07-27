@@ -30,5 +30,6 @@ class Constants {
         const val VERIFICATION_APPLIED = "verificationApplied"
         const val UDID_NO_LIST = "udidNoList"
         const val NEWS = "news"
+        const val AIDS_VERIFICATION_DOC = "aidsVerificationDocs"
     }
 }

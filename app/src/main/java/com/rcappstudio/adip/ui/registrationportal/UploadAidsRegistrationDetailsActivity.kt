@@ -2,22 +2,22 @@ package com.rcappstudio.adip.ui.registrationportal
 
 import android.Manifest
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
-import android.media.Image
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.appcompat.app.AppCompatActivity
+import com.androidbuts.multispinnerfilter.KeyPairBoolData
+import com.androidbuts.multispinnerfilter.MultiSpinnerListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -35,8 +35,6 @@ import com.rcappstudio.adip.data.model.LatLng
 import com.rcappstudio.adip.data.model.RequestStatus
 import com.rcappstudio.adip.data.model.VerificationApplied
 import com.rcappstudio.adip.databinding.ActivityUploadAidsRegistrationDetailsBinding
-import com.rcappstudio.adip.databinding.ActivityUploadProfileBinding
-import com.rcappstudio.adip.databinding.ConfirmationDialogBinding
 import com.rcappstudio.adip.databinding.ImagepreviewDialogBinding
 import com.rcappstudio.adip.utils.Constants
 import com.rcappstudio.adip.utils.LoadingDialog
@@ -59,6 +57,10 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
     private lateinit var identityProofImageUrl  :String
     private lateinit var addressProofImageUrl : String
 
+    private lateinit var selectedCategory : String
+
+    private lateinit var  disabilityAdapter : ArrayAdapter<CharSequence>
+
     private lateinit var pref : SharedPreferences
 
     private var IMAGE_NO : Int = 0
@@ -66,6 +68,13 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
     private lateinit var loadingDialog: LoadingDialog
 
     private lateinit var databaseReference : DatabaseReference
+
+    private lateinit var listOfAidsSelected : MutableList<String>
+
+    private lateinit var orthopedicDisabilityList : MutableList<KeyPairBoolData>
+    private lateinit var visualDisabilityList : MutableList<KeyPairBoolData>
+    private lateinit var hearingDisabilityList : MutableList<KeyPairBoolData>
+    private lateinit var multipleDisabilityList : MutableList<KeyPairBoolData>
 
     private val getImage = registerForActivityResult(
         ActivityResultContracts.GetContent()
@@ -80,7 +89,107 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
         loadingDialog = LoadingDialog(this, "Uploading files it may take a while...")
         pref = applicationContext.getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
         setContentView(binding.root)
+        fetchList()
+        initSpinner()
         clickListener()
+    }
+
+    private fun fetchList(){
+
+        //TODO: Add network optimization in future
+        listOfAidsSelected = mutableListOf()
+        orthopedicDisabilityList = mutableListOf()
+        orthopedicDisabilityList.add(KeyPairBoolData("Tricycle", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Wheel chair(adult and child)", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Walking stick", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Rollator", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Quadripod", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Tetrapod", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Auxiliary crutches", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Elbow crutches", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("CP chair", false))
+        orthopedicDisabilityList.add(KeyPairBoolData("Corner chair", false))
+
+        visualDisabilityList = mutableListOf()
+        visualDisabilityList.add(KeyPairBoolData("Accessible mobile phones, Laptop, Braille note taker , Brallier (school going students)",false))
+        visualDisabilityList.add(KeyPairBoolData("Learning equipment",false))
+        visualDisabilityList.add(KeyPairBoolData("Communication equipment",false))
+        visualDisabilityList.add(KeyPairBoolData("Braille attachment for telephone for deafblind persons",false))
+        visualDisabilityList.add(KeyPairBoolData("Low vision Aids",false))
+        visualDisabilityList.add(KeyPairBoolData("Special mobility aids(for muscular dystrophy and cerebral palsy person)",false))
+
+        hearingDisabilityList = mutableListOf()
+        hearingDisabilityList.add(KeyPairBoolData("Hearing aids", false))
+        hearingDisabilityList.add(KeyPairBoolData("Educational kits", false))
+        hearingDisabilityList.add(KeyPairBoolData("Assistive and alarm devices", false))
+        hearingDisabilityList.add(KeyPairBoolData("Cochlear implant", false))
+
+        multipleDisabilityList = mutableListOf()
+        multipleDisabilityList.add(KeyPairBoolData("Teaching learning material kit", false))
+
+    }
+
+    private fun initSpinner(){
+        disabilityAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.array_disability_category,R.layout.spinner_layout2
+        )
+
+        disabilityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.categorySpinner.adapter = disabilityAdapter
+
+        binding.categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(adapterView: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                selectedCategory = binding.categorySpinner.selectedItem.toString()
+
+                val parentId : Int = adapterView!!.id
+
+                if(parentId == R.id.categorySpinner){
+                    when(selectedCategory){
+                        "Select disability categor"->{
+                            //TODO: hide multiple selection spinner
+                        }
+                        "Orthopedic disability"->{
+                            setMultipleSelectionList(orthopedicDisabilityList)
+                        }
+                        "Visual disability"->{
+                            setMultipleSelectionList(visualDisabilityList)
+                        }
+                        "Hearing disability" ->{
+                            setMultipleSelectionList(hearingDisabilityList)
+                        }
+                        "Mentally and multiple disability"->{
+                            setMultipleSelectionList(multipleDisabilityList)
+                        }
+                    }
+                }
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+    }
+
+    private fun setMultipleSelectionList(list : MutableList<KeyPairBoolData>){
+        binding.multipleItemSelectionSpinner.setItems(
+            list
+        ) { items ->
+            for (i in 0 until items!!.size) {
+                if (items[i].isSelected) {
+                    Log.i(
+                        "multiData",
+                        i.toString() + " : " + items[i].name + " : " + items[i]
+                            .isSelected
+                    )
+
+                    listOfAidsSelected.add(items[i].name)
+                }
+            }
+        }
     }
 
     private fun clickListener(){
@@ -269,7 +378,8 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
            passportSizeImageUrl,
            incomeCertificateImageUrl,
            identityProofImageUrl,
-           addressProofImageUrl
+           addressProofImageUrl,
+
         )
         databaseReference
             .child("/aidsVerificationDocs")
@@ -280,7 +390,7 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
 
     private fun createRequestStatus(){
 
-        val requestStatus = RequestStatus(false, false , "Yet to verify the documents")
+        val requestStatus = RequestStatus(false, false , "Yet to verify the documents", null,false,System.currentTimeMillis(),listOfAidsSelected)
         requestStatus.message = "Yet to verify the documents"
 
         databaseReference.child("/${Constants.REQUEST_STATUS}")

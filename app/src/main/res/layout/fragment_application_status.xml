@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.ApplicationStatusFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:visibility="visible"
+            android:id="@+id/lottieFile"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:layout_width="@dimen/_300sdp"
+            android:layout_height="@dimen/_300sdp"
+            android:layout_centerInParent="true"
+            app:lottie_rawRes="@raw/verification_not_applied" />
+
+        <TextView
+            android:id="@+id/tvNoStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lottieFile"
+            android:layout_centerHorizontal="true"
+            android:text="No status for application"
+            android:textColor="@color/black"
+            android:visibility="visible" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/applicationStatusCardView"
+            android:visibility="gone"
+            app:strokeColor="@color/green"
+            app:strokeWidth="@dimen/_1sdp"
+            android:layout_margin="@dimen/_10sdp"
+
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/hApplicationStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/mplus_rounded_1c_black"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Application status"
+                    android:textColor="@color/black" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_below="@id/hApplicationStatus"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/elon"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hApplicationStatus"
+
+                    android:layout_marginTop="@dimen/_19sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_black"
+                    android:layout_marginStart="@dimen/_100sdp"
+                    android:text="Name : HARI HARAN R C"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/tvMobileNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginStart="@dimen/_100sdp"
+
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_black"
+
+                    android:text="Mobile no : 8838387219"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvAppliedOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvMobileNo"
+                    android:layout_marginStart="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_black"
+                    android:text="Applied on:24th JUNE, 2022"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/headlineFilesUploaded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_image"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/mplus_rounded_1c_black"
+                    android:text="Files uploaded for verifiction:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvDisabilityCertificate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@+id/headlineFilesUploaded"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/_8sdp"
+                    android:text=" 1) Disability certificate"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvAddressProof"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@+id/tvDisabilityCertificate"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/_8sdp"
+                    android:text="2) Address proof         "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvIncomeCertificate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@+id/tvAddressProof"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/_8sdp"
+                    android:text="3) Income certificate  "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvPassportSizePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@+id/tvIncomeCertificate"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/_8sdp"
+                    android:text="  4) Passportsize photo "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvIdentityProof"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@+id/tvPassportSizePhoto"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/_8sdp"
+                    android:text="  5) Identity proof         "
+                    android:textColor="@color/black" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/verificationStatusCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvIdentityProof"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/yellowLight"
+
+                    app:strokeColor="@color/yellow"
+                    app:strokeWidth="1dp">
+
+                    <TextView
+                        android:id="@+id/statusTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:text="Not yet verified"
+                        android:textColor="@color/black" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:visibility="gone"
+                    android:id="@+id/aidsDeliveryCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_below="@+id/verificationStatusCardView"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/yellowLight"
+                    app:strokeColor="@color/yellow"
+                    app:strokeWidth="1dp">
+
+                    <TextView
+                        android:id="@+id/aidsDeliveryTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:text="Aids/appliance not recieved"
+                        android:textColor="@color/black" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <ImageButton
+
+                    android:visibility="gone"
+                    android:id="@+id/mapButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/aidsDeliveryCardView"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:src="@drawable/img_gmap" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+
+
+
+
+</ScrollView>

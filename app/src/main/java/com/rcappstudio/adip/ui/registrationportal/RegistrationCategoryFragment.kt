@@ -9,7 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.rcappstudio.adip.data.model.RequestStatus
 import com.rcappstudio.adip.databinding.ConfirmationDialogBinding
 import com.rcappstudio.adip.databinding.FragmentRegistrationCategoryBinding
 import com.rcappstudio.adip.utils.Constants
@@ -66,17 +70,67 @@ class RegistrationCategoryFragment : Fragment() {
             AppCompatActivity.MODE_PRIVATE
         )
         val userPath = pref.getString(Constants.USER_PROFILE_PATH, null)
-        FirebaseDatabase.getInstance().getReference("$userPath/alreadyApplied").get()
-            .addOnSuccessListener {
-                if(it.exists()){
-                    if(it.value as Boolean){
-                        binding.btnContinue.visibility = View.GONE
-                        binding.tvStatus.visibility = View.VISIBLE
+
+        FirebaseDatabase.getInstance().getReference("$userPath/alreadyApplied")
+            .addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(it: DataSnapshot) {
+                    if(it.exists()){
+                        if(it.value as Boolean){
+                            checkIsAppropriateOrNotRequestStatus(userPath!!)
+
+                        } else{
+                            binding.btnContinue.visibility = View.VISIBLE
+                            binding.llLayout.visibility = View.VISIBLE
+                            binding.lottieFile.visibility = View.GONE
+                            binding.tvStatus.visibility = View.GONE
+                            loadingDialog.isDismiss()
+                        }
                         loadingDialog.isDismiss()
                     }
                     loadingDialog.isDismiss()
                 }
-                loadingDialog.isDismiss()
-            }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
     }
+
+    private fun checkIsAppropriateOrNotRequestStatus(userPath : String){
+        FirebaseDatabase.getInstance().getReference("${userPath}/${Constants.REQUEST_STATUS}")
+            .addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        val requestStatus = snapshot.getValue(RequestStatus::class.java)
+                        if(requestStatus!!.notAppropriate){
+                            binding.btnContinue.visibility = View.VISIBLE
+                            binding.llLayout.visibility = View.VISIBLE
+                            binding.lottieFile.visibility = View.GONE
+                            binding.tvStatus.visibility = View.GONE
+                            loadingDialog.isDismiss()
+                        } else{
+                            binding.btnContinue.visibility = View.GONE
+                            binding.llLayout.visibility = View.GONE
+                            binding.lottieFile.visibility = View.VISIBLE
+                            binding.tvStatus.visibility = View.VISIBLE
+                            loadingDialog.isDismiss()
+                        }
+                    } else{
+                        binding.btnContinue.visibility = View.VISIBLE
+                        binding.llLayout.visibility = View.VISIBLE
+                        binding.lottieFile.visibility = View.GONE
+                        binding.tvStatus.visibility = View.GONE
+                        loadingDialog.isDismiss()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+    }
+
+
 }

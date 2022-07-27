@@ -10,7 +10,7 @@
         android:id="@+id/profile_image"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/elon"
+        android:src="@drawable/no_profile"
         app:civ_border_color="#FF000000"
         app:civ_border_width="1dp"
         app:layout_constraintBottom_toBottomOf="parent"

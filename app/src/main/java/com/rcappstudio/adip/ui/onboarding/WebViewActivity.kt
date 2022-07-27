@@ -11,7 +11,7 @@ import com.rcappstudio.adip.databinding.ActivityWebViewBinding
 
 class WebViewActivity : AppCompatActivity() {
 
-    private val url = "https://www.swavlambancard.gov.in/pwd/application"
+    private lateinit var  url : String
 
     private lateinit var binding : ActivityWebViewBinding
 
@@ -19,6 +19,7 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        url= intent.getStringExtra("url")!!
 
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.settings.allowContentAccess = true

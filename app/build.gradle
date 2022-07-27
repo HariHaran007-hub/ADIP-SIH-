@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.rcappstudio.adip"
-        minSdk 27
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -20,7 +20,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -111,6 +112,11 @@ dependencies {
     //Picasso image loading library
     implementation 'com.squareup.picasso:picasso:2.8'
 
+    //Multiple selection spinner
+    implementation 'com.github.pratikbutani:MultiSelectSpinner:1.0.1'
+
+    //Rounded image view for view pager
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
 
 }

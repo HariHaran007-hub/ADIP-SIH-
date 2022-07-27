@@ -60,6 +60,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etName"
+                android:hint="Enter name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_margin="@dimen/_2sdp"
@@ -75,6 +76,7 @@
                 android:id="@+id/etUdidNo"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
+                android:hint="Enter UDID number"
                 android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_baseline_card_membership_24"
@@ -100,7 +102,9 @@
                 android:id="@+id/datePicker"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
-                android:padding="@dimen/_5sdp"
+                android:padding="@dimen/_8sdp"
+                android:hint="Click to select date of birth"
+
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 app:fontFamily="@font/mplus_rounded_1c_extra_bold"

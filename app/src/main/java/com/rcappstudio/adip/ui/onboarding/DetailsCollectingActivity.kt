@@ -292,11 +292,11 @@ class DetailsCollectingActivity : AppCompatActivity() {
     }
 
     private fun checkDataValidity(){
-        FirebaseDatabase.getInstance().getReference("${Constants.USER_ID_LIST}/${binding.etUdidNo.text.toString()}")
+        FirebaseDatabase.getInstance().getReference("${Constants.UDID_NO_LIST}/${binding.etUdidNo.text.toString()}")
             .get().addOnSuccessListener {
                 if(it.exists()){
                     //TODO: Show bottom sheet error dialog
-                    Toast.makeText(this , "UDID number alreday exist!!", Toast.LENGTH_LONG)
+                    Toast.makeText(this , "UDID number alreaday exist!!", Toast.LENGTH_LONG)
                         .show()
                 } else{
                     val intent = Intent(applicationContext, UploadProfileActivity::class.java)
@@ -344,7 +344,7 @@ class DetailsCollectingActivity : AppCompatActivity() {
     }
 
     private fun makeDateString(day : Int , month : Int , year : Int) : String{
-        return getMonthFormat(month) + " " + day + " " + year
+        return getMonthFormat(month+1) + " " + day + " " + year
     }
 
     private fun getMonthFormat(month: Int): String {

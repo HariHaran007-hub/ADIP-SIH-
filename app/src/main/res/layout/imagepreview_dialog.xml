@@ -4,12 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cancelTextView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:drawableStart="@drawable/ic_baseline_cancel_24"
+        android:drawablePadding="@dimen/_5sdp"
+        android:fontFamily="@font/mplus_rounded_1c_regular"
+        android:padding="@dimen/_5ssp"
+        android:text="Click to cancel image preview"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ImageView
         android:id="@+id/dialogImageView"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_height="wrap_content"
+        android:cropToPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

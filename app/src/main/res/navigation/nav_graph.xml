@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/ngoMapsFragment">
+    app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/newsFragment"
-        android:name="com.rcappstudio.adip.ui.news.NewsFragment"
-        android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
     <fragment
         android:id="@+id/ngoMapsFragment"
         android:name="com.rcappstudio.adip.ui.NgoMapsFragment"
@@ -20,4 +15,14 @@
         android:name="com.rcappstudio.adip.ui.registrationportal.RegistrationCategoryFragment"
         android:label="fragment_registration_category"
         tools:layout="@layout/fragment_registration_category" />
+    <fragment
+        android:id="@+id/applicationStatusFragment"
+        android:name="com.rcappstudio.adip.ui.ApplicationStatusFragment"
+        android:label="fragment_application_status"
+        tools:layout="@layout/fragment_application_status" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.rcappstudio.adip.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

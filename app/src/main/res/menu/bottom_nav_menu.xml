@@ -11,16 +11,16 @@
         android:id="@+id/registrationPortal"
         android:icon="@drawable/ic_recent"
         app:cnb_iconColor="@color/pink"
-        android:title="Registration Portal" />
+        android:title="Portal" />
+    <item
+        android:id="@+id/requestStatus"
+        android:icon="@drawable/ic_baseline_work_history_24"
+        app:cnb_iconColor="@color/pink"
+        android:title="Application status" />
     <item
         android:id="@+id/ngoLocation"
         android:icon="@drawable/ic_search"
         app:cnb_iconColor="@color/pink"
-        android:title="NGO locations" />
-    <item
-        android:id="@+id/news"
-        android:title="News"
-        app:cnb_iconColor="@color/pink"
-        android:icon="@drawable/ic_baseline_newspaper_24"
-        />
+        android:title="Camping locations" />
+
 </menu>

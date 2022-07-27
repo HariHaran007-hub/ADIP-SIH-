@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 
 import android.provider.Settings
+import android.util.Log
 
 import android.widget.Toast
 
@@ -25,10 +26,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
-import com.rcappstudio.adip.data.model.AidsDoc
-import com.rcappstudio.adip.data.model.RequestStatus
-import com.rcappstudio.adip.data.model.UserIdList
-import com.rcappstudio.adip.data.model.UserModel
+import com.rcappstudio.adip.data.model.*
 import com.rcappstudio.adip.databinding.ActivityUploadProfileBinding
 import com.rcappstudio.adip.ui.MainActivity
 import com.rcappstudio.adip.utils.Constants.Companion.DISTRICT
@@ -142,8 +140,7 @@ class UploadProfileActivity : AppCompatActivity() {
 
         saveDataToSharedPreference(state, district, FirebaseAuth.getInstance().uid.toString())
 
-        val aidsDoc = HashMap<String, AidsDoc>()
-        val requestStatus = HashMap<String, RequestStatus>()
+
 
         val pref = applicationContext.getSharedPreferences(SHARED_PREF_FILE, MODE_PRIVATE)
         val userProfilePath = pref.getString(USER_PROFILE_PATH, null)
@@ -164,7 +161,10 @@ class UploadProfileActivity : AppCompatActivity() {
         FirebaseDatabase.getInstance()
             .getReference("${USER_ID_LIST}/${FirebaseAuth.getInstance().uid!!}")
             .setValue(userIdList)
-        FirebaseDatabase.getInstance().getReference(UDID_NO_LIST).child(udidNo)
+
+        val udidReferencData = UdidReferenceModel(FirebaseAuth.getInstance().uid!! ,state, district)
+
+        FirebaseDatabase.getInstance().getReference(UDID_NO_LIST).child(udidNo).setValue(udidReferencData)
 
         FirebaseDatabase.getInstance().getReference(userProfilePath.toString()).setValue(userModel)
             .addOnSuccessListener {

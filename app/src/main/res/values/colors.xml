@@ -10,4 +10,15 @@
 
     <color name="pink">#EF1F61</color>
     <color name="pinkFaded">#1AEF1F61</color>
+
+    <color name="green">#08AA0F</color>
+    <color name="greenLight">#1A08AA0F</color>
+
+    <color name="red">#F40404</color>
+    <color name="redLight">#1AF40404</color>
+
+    <color name="yellow">#EFC51B</color>
+    <color name="yellowLight">#1AEFC51B</color>
+
+
 </resources>

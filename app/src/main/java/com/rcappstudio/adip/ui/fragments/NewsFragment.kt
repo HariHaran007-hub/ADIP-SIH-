@@ -1,7 +1,6 @@
-package com.rcappstudio.adip.ui.news
+package com.rcappstudio.adip.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
-import com.rcappstudio.adip.R
 import com.rcappstudio.adip.adapter.NewsAdapter
 import com.rcappstudio.adip.databinding.FragmentNewsBinding
+import com.rcappstudio.adip.ui.news.NewsModel
 import com.rcappstudio.adip.utils.Constants
-import java.util.*
 
 class NewsFragment : Fragment() {
 

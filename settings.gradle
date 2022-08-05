@@ -10,9 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url "https://dl.cloudsmith.io/public/cometchat/cometchat-pro-android/maven/"
-        }
+
         maven { url 'https://jitpack.io' }
     }
 }

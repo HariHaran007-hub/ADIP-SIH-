@@ -41,7 +41,7 @@ class DetailsCollectingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsCollectingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar!!.hide()
+
         mobileNo = intent.getStringExtra("mobile").toString()
         setSpinnerLayout()
         clickListener()

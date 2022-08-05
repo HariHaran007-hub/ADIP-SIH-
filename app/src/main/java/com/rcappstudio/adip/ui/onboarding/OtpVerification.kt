@@ -15,7 +15,7 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.data.model.UserIdList
-import com.rcappstudio.adip.ui.MainActivity
+import com.rcappstudio.adip.ui.activity.MainActivity
 import com.rcappstudio.adip.utils.Constants
 import java.util.concurrent.TimeUnit
 
@@ -33,7 +33,7 @@ class OtpVerification : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otp_verification)
-        supportActionBar!!.hide()
+
         et1 = findViewById<EditText>(R.id.inputotp1)
         et2 = findViewById<EditText>(R.id.inputotp2)
         et3 = findViewById<EditText>(R.id.inputotp3)

@@ -31,5 +31,7 @@ class Constants {
         const val UDID_NO_LIST = "udidNoList"
         const val NEWS = "news"
         const val AIDS_VERIFICATION_DOC = "aidsVerificationDocs"
+        const val SUPPORT_CHAT = "supportChat"
+        const val CAMPING = "CAMPING"
     }
 }

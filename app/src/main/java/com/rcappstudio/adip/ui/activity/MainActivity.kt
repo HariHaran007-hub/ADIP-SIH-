@@ -1,9 +1,5 @@
-package com.rcappstudio.adip.ui
+package com.rcappstudio.adip.ui.activity
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -22,10 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
 
-    private lateinit var loadingDialog : LoadingDialog
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,21 +25,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initBottomNavigationView()
         generateFcmToken()
-
-
-        val pref = applicationContext.getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
-
-        val userPath= pref.getString(Constants.USER_PROFILE_PATH, null)
-
-        FirebaseDatabase.getInstance().getReference("${userPath!!}/requestStatus").get()
-            .addOnSuccessListener {
-                if(it.exists()){
-                    val userModel = it.getValue(RequestStatus::class.java)
-                    Log.d("UserDataIS", "onCreate: "+ userModel!!.latLng!!.lat)
-                } else{
-                    Log.d("UserData", "onCreate: incorrect path reference")
-                }
-            }
     }
 
     private fun initBottomNavigationView(){

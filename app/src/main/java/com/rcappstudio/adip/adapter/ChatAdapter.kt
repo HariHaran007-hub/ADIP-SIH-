@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.data.model.MessageModel
+import com.rcappstudio.adip.utils.timeStampToHrs
 
 class ChatAdapter(private val context: Context, private var chatList: MutableList<MessageModel>) :
     RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
@@ -37,19 +38,21 @@ class ChatAdapter(private val context: Context, private var chatList: MutableLis
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chat = chatList[position]
-        holder.txtUserName.text = chat.message
+        holder.txtUserName.text = chat.content
+        holder.time.text = timeStampToHrs(chat.timestamp!!)
 
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val txtUserName: TextView = view.findViewById(R.id.tvMessage)
+        val time : TextView = view.findViewById(R.id.time)
 
     }
 
     override fun getItemViewType(position: Int): Int {
         firebaseUser = FirebaseAuth.getInstance().currentUser
-        if (chatList[position].senderId == firebaseUser!!.uid) {
+        if (chatList[position].messagerId == firebaseUser!!.uid) {
             return MESSAGE_TYPE_RIGHT
         } else {
             return MESSAGE_TYPE_LEFT

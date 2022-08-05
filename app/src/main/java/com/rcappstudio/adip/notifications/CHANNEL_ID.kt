@@ -6,7 +6,6 @@ import android.app.NotificationManager
 import android.app.NotificationManager.IMPORTANCE_HIGH
 import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
-import android.app.PendingIntent.FLAG_ONE_SHOT
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -17,8 +16,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.rcappstudio.adip.R
-import com.rcappstudio.adip.ui.ChatActivity
-import com.rcappstudio.adip.ui.MainActivity
+import com.rcappstudio.adip.ui.activity.MainActivity
 import kotlin.random.Random
 
 private const val CHANNEL_ID = "my_channel"

@@ -1,4 +1,4 @@
-package com.rcappstudio.adip.ui
+package com.rcappstudio.adip.ui.activity
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
-        supportActionBar!!.hide()
+
         setContentView(binding.root)
 
         val colorFrom = ResourcesCompat.getColor(resources, R.color.white, null)

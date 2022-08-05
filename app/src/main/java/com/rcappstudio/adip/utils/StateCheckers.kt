@@ -5,6 +5,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun isConnected(context : Context): Boolean {
     val cm = context
@@ -22,4 +24,9 @@ fun isConnected(context : Context): Boolean {
         val networkInfo = cm.activeNetworkInfo
         networkInfo != null && networkInfo.isConnected
     }
+}
+
+fun timeStampToHrs(timeStamp : Long) : String{
+
+    return SimpleDateFormat("h:mma").format(Date(timeStamp ))
 }

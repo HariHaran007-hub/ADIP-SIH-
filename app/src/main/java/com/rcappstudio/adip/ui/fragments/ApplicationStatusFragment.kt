@@ -1,4 +1,4 @@
-package com.rcappstudio.adip.ui
+package com.rcappstudio.adip.ui.fragments
 
 import android.app.AlertDialog
 import android.content.Context.MODE_PRIVATE
@@ -43,6 +43,7 @@ class ApplicationStatusFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentApplicationStatusBinding.inflate(layoutInflater)
+        binding.customToolbar.toolbar.title = "Status bar"
         return binding.root
     }
 

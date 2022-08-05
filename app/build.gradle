@@ -33,9 +33,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    dataBinding{
-        enabled  true
-    }
+
 
     viewBinding{
         enabled true
@@ -88,7 +86,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    implementation 'com.cometchat:pro-android-chat-sdk:3.0.0'
+
 
 //API calls
     def retrofit_version = '2.9.0'
@@ -117,6 +115,7 @@ dependencies {
 
     //Rounded image view for view pager
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
 
 
 }

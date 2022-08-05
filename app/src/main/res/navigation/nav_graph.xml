@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/ngoMapsFragment"
-        android:name="com.rcappstudio.adip.ui.NgoMapsFragment"
+        android:name="com.rcappstudio.adip.ui.fragments.NgoMapsFragment"
         android:label="fragment_ngo_maps"
         tools:layout="@layout/fragment_ngo_maps" />
     <fragment
@@ -17,12 +17,12 @@
         tools:layout="@layout/fragment_registration_category" />
     <fragment
         android:id="@+id/applicationStatusFragment"
-        android:name="com.rcappstudio.adip.ui.ApplicationStatusFragment"
+        android:name="com.rcappstudio.adip.ui.fragments.ApplicationStatusFragment"
         android:label="fragment_application_status"
         tools:layout="@layout/fragment_application_status" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.rcappstudio.adip.ui.HomeFragment"
+        android:name="com.rcappstudio.adip.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

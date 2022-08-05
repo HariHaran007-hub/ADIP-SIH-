@@ -11,11 +11,11 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
+        <ImageView
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:layout_margin="@dimen/_10ssp"
-            app:lottie_rawRes="@raw/logo_lottie"
+            android:src="@drawable/adip_logo"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
              />
@@ -138,7 +138,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_below="@id/tvStateSpinner"
-                    android:layout_marginTop="@dimen/_2sdp" />
+                    android:layout_marginTop="2dp" />
 
                 <TextView
                     android:id="@+id/tvDistrictSpinner"

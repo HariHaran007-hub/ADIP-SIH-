@@ -33,6 +33,7 @@ class RegistrationCategoryFragment : Fragment() {
     ): View {
 
         binding = FragmentRegistrationCategoryBinding.inflate(layoutInflater)
+        binding.customToolBar.toolbar.title = "Registration portal"
         return binding.root
     }
 

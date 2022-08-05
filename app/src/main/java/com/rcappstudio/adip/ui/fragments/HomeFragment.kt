@@ -1,4 +1,4 @@
-package com.rcappstudio.adip.ui
+package com.rcappstudio.adip.ui.fragments
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -10,20 +10,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.adapter.NewsAdapter
 import com.rcappstudio.adip.adapter.SliderAdapter
 import com.rcappstudio.adip.data.model.UpdatesBanner
-import com.rcappstudio.adip.databinding.FragmentApplicationStatusBinding
 import com.rcappstudio.adip.databinding.FragmentHomeBinding
+import com.rcappstudio.adip.ui.activity.ChatActivity
+import com.rcappstudio.adip.ui.activity.ProfileActivity
 import com.rcappstudio.adip.ui.news.NewsActivity
 import com.rcappstudio.adip.ui.news.NewsModel
 import com.rcappstudio.adip.ui.onboarding.WebViewActivity
@@ -54,6 +53,7 @@ class HomeFragment : Fragment() {
     ): View {
         this.inflater = inflater
         binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding.customToolBar.toolbar.title = "Home"
         return binding.root
     }
 

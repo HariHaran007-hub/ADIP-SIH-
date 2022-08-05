@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 
 import android.provider.Settings
-import android.util.Log
 
 import android.widget.Toast
 
@@ -18,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -28,7 +26,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.rcappstudio.adip.data.model.*
 import com.rcappstudio.adip.databinding.ActivityUploadProfileBinding
-import com.rcappstudio.adip.ui.MainActivity
+import com.rcappstudio.adip.ui.activity.MainActivity
 import com.rcappstudio.adip.utils.Constants.Companion.DISTRICT
 import com.rcappstudio.adip.utils.Constants.Companion.PROFILE_IMAGE
 import com.rcappstudio.adip.utils.Constants.Companion.SHARED_PREF_FILE
@@ -38,8 +36,6 @@ import com.rcappstudio.adip.utils.Constants.Companion.USER
 import com.rcappstudio.adip.utils.Constants.Companion.USER_ID_LIST
 import com.rcappstudio.adip.utils.Constants.Companion.USER_PROFILE_PATH
 import com.rcappstudio.adip.utils.LoadingDialog
-
-import kotlin.collections.HashMap
 
 
 class UploadProfileActivity : AppCompatActivity() {
@@ -71,7 +67,7 @@ class UploadProfileActivity : AppCompatActivity() {
         binding = ActivityUploadProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loadingDialog = LoadingDialog(this, "Uploading please wait....")
-        supportActionBar!!.hide()
+
 
         getIntentData()
         clickListener()

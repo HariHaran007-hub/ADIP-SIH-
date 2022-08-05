@@ -13,7 +13,7 @@ import com.rcappstudio.adip.data.ClickListener
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.adapter.SplashAdapter
 import com.rcappstudio.adip.databinding.ActivityOnboardingBinding
-import com.rcappstudio.adip.ui.MainActivity
+import com.rcappstudio.adip.ui.activity.MainActivity
 
 class OnboardingActivity : AppCompatActivity() , ClickListener {
 
@@ -23,7 +23,7 @@ class OnboardingActivity : AppCompatActivity() , ClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar!!.hide()
+//        supportActionBar!!.hide()
 
         initViews()
     }

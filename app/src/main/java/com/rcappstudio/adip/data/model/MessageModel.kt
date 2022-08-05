@@ -1,10 +1,11 @@
 package com.rcappstudio.adip.data.model
 
 class MessageModel (
-    var message : String? = "",
-    var senderId : String? = "",
-//    var receiverId : String? = "",
-    var timeStamp : Long ? = 0
-        )
+
+    var content  :String ?= null,
+    var messagerId: String ?= null,
+    var messagerName: String ?= null,
+    var timestamp  :Long ?= 0
+)
 
 

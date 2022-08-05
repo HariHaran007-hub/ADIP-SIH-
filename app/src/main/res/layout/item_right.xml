@@ -9,9 +9,10 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:layout_gravity="end"
+        android:background="@drawable/item_right_side_background"
         android:layout_marginEnd="@dimen/_10sdp"
         android:orientation="horizontal">
 
@@ -21,16 +22,27 @@
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/mplus_rounded_1c_light"
-            android:maxEms="8"
             android:padding="@dimen/_3sdp"
+            android:maxEms="8"
             android:layout_marginTop="@dimen/_3sdp"
+            android:textSize="@dimen/_12ssp"
             android:textColor="@color/white"
-            android:background="@drawable/item_right_side_background"
-            android:textSize="@dimen/_14ssp"
-            tools:text="Ram" />
+            android:fontFamily="@font/mplus_rounded_1c_bold"
+            tools:text="hari" />
 
-
+        <TextView
+            android:id="@+id/time"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:textSize="@dimen/_8ssp"
+            android:text="5:32am"
+            android:layout_gravity="bottom"
+            android:textColor="@color/white"
+            android:fontFamily="@font/mplus_rounded_1c_light"
+             />
 
 
     </LinearLayout>

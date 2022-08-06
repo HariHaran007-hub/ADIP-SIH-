@@ -72,7 +72,7 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:text="+91 "
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
 
             <EditText
@@ -84,7 +84,7 @@
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/pink"
                 android:hint="Enter your number"
                 android:textStyle="bold"/>

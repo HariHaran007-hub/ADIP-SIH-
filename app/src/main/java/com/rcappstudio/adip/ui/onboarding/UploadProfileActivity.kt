@@ -148,7 +148,7 @@ class UploadProfileActivity : AppCompatActivity() {
             dateOfBirth,
             state,
             district,
-            false,
+//            false,
             imageUrl
         )
 

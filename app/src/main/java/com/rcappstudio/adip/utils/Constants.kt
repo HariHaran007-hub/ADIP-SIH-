@@ -23,7 +23,7 @@ class Constants {
         const val IDENTITY_PROOF = "identityProof"
         const val ADDRESS_PROOF = "addressProof"
 
-
+        //Database node names
         const val USER = "USERS"
         const val USER_ID_LIST = "userIdList"
         const val REQUEST_STATUS = "requestStatus"
@@ -33,5 +33,15 @@ class Constants {
         const val AIDS_VERIFICATION_DOC = "aidsVerificationDocs"
         const val SUPPORT_CHAT = "supportChat"
         const val CAMPING = "CAMPING"
+        const val NO_AIDS = "noOfAids"
+        const val AIDS_APPLIED = "aidsApplied"
+        //Categories
+        const val CATEGORY_ORTHOPEDIC_DISABILITY = "orthopedicDisability"
+        const val CATEGORY_VISUAL_DISABILITY = "visualDisability"
+        const val CATEGORY_HEARING_DISABILITY = "hearingDisability"
+        const val CATEGORY_MENTALLY_AND_MULTIPLE_DISABILITY = "mentallyAndMultipleDisability"
+
+        //Orthopedic disability
+        //const val
     }
 }

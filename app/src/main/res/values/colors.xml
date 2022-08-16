@@ -20,5 +20,7 @@
     <color name="yellow">#EFC51B</color>
     <color name="yellowLight">#1AEFC51B</color>
 
+    <color name="greenLightLight">#0A08AA0F</color>
+    <color name="redLightLight">#0DF40404</color>
 
 </resources>

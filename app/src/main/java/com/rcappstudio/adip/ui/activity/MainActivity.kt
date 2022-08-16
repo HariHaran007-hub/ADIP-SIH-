@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.rcappstudio.adip.R
+import com.rcappstudio.adip.data.model.NgoData
 import com.rcappstudio.adip.data.model.RequestStatus
 import com.rcappstudio.adip.databinding.ActivityMainBinding
 import com.rcappstudio.adip.utils.Constants
@@ -25,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initBottomNavigationView()
         generateFcmToken()
+        val shardPref = getSharedPreferences(Constants.SHARED_PREF_FILE , MODE_PRIVATE)
+        val userPath = shardPref.getString(Constants.USER_PROFILE_PATH, null )!!
+//        FirebaseDatabase.getInstance().getReference("$userPath/requestStatus/1660606584448/ngoList")
+//            .push().setValue(NgoData(mutableListOf("Hearing aids", "Educational kits", "Assistive and alarm devices") ,false, "-N8rxCZD6AXF44pu3ASo" ))
     }
 
     private fun initBottomNavigationView(){
@@ -88,6 +93,10 @@ class MainActivity : AppCompatActivity() {
         val pref = applicationContext.getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
         val userPath = pref.getString(Constants.USER_PROFILE_PATH, null)
         FirebaseDatabase.getInstance().getReference("$userPath/fcmToken").setValue(token)
+    }
+
+    private fun addAidsDatabase(){
+        FirebaseDatabase.getInstance().getReference("")
     }
 
 }

@@ -64,132 +64,225 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/mplus_rounded_1c_extra_bold"
                 android:layout_marginBottom="@dimen/_20ssp"/>
-            <com.google.android.material.card.MaterialCardView
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:strokeColor="@color/pink"-->
+<!--                app:strokeWidth="@dimen/_2sdp"-->
+<!--                app:cardBackgroundColor="@color/pinkFaded"-->
+<!--                >-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Required Documents:"-->
+<!--                        android:textSize="@dimen/_14ssp"-->
+<!--                        android:padding="@dimen/_2sdp"-->
+<!--                        android:layout_marginStart="@dimen/_4sdp"-->
+<!--                        android:fontFamily="@font/mplus_rounded_1c_bold"-->
+<!--                        android:textColor="@color/black"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Disability certificate"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Passport size photo"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Income certificate"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Identity proof"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:paddingBottom="@dimen/_4sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Address proof"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:paddingBottom="@dimen/_4sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+<!--                </LinearLayout>-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_marginTop="@dimen/_12ssp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:strokeColor="@color/pink"-->
+<!--                app:strokeWidth="@dimen/_2sdp"-->
+<!--                app:cardBackgroundColor="@color/pinkFaded"-->
+<!--                >-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Categories provided"-->
+<!--                        android:textSize="@dimen/_14ssp"-->
+<!--                        android:padding="@dimen/_2sdp"-->
+<!--                        android:layout_marginStart="@dimen/_4sdp"-->
+<!--                        android:fontFamily="@font/mplus_rounded_1c_bold"-->
+<!--                        android:textColor="@color/black"/>-->
+
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Orthopedic disability"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:paddingBottom="@dimen/_4sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Visual disability"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:paddingBottom="@dimen/_4sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Mentally and multiple disability"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:paddingBottom="@dimen/_4sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/_4sdp"-->
+<!--                        android:text="⦿ Hearing disability"-->
+<!--                        android:paddingStart="@dimen/_20sdp"-->
+<!--                        android:paddingBottom="@dimen/_4sdp"-->
+<!--                        android:textSize="@dimen/_12ssp"/>-->
+<!--                </LinearLayout>-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+            <TextView
+                android:id="@+id/selectTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:strokeColor="@color/pink"
-                app:strokeWidth="@dimen/_2sdp"
-                app:cardBackgroundColor="@color/pinkFaded"
-                >
+                android:text="Select your respective aids"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/mplus_rounded_1c_black"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Required Documents:"
-                        android:textSize="@dimen/_14ssp"
-                        android:padding="@dimen/_2sdp"
-                        android:layout_marginStart="@dimen/_4sdp"
-                        android:fontFamily="@font/mplus_rounded_1c_bold"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Disability certificate"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:textSize="@dimen/_12ssp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Passport size photo"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:textSize="@dimen/_12ssp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Income certificate"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:textSize="@dimen/_12ssp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Identity proof"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingBottom="@dimen/_4sdp"
-                        android:textSize="@dimen/_12ssp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Address proof"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingBottom="@dimen/_4sdp"
-                        android:textSize="@dimen/_12ssp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                android:id="@+id/multipleItemSelectionSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_margin="@dimen/_10sdp"
+                app:hintText="Multi Item Selection" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_marginTop="@dimen/_12ssp"
                 android:layout_width="match_parent"
+                android:layout_margin="@dimen/_10sdp"
+                android:visibility="gone"
+                android:id="@+id/llIvCertificate"
                 android:layout_height="wrap_content"
-                app:strokeColor="@color/pink"
-                app:strokeWidth="@dimen/_2sdp"
-                app:cardBackgroundColor="@color/pinkFaded"
-                >
-
+                android:background="@color/white"
+                app:strokeWidth="@dimen/_1sdp"
+                app:strokeColor="@color/pink">
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <TextView
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:cropToPadding="true"
+                        android:id="@+id/ivIncomeCertificate"
+                        android:src="@drawable/elon"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="match_parent"
+                        />
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Category"
-                        android:textSize="@dimen/_14ssp"
-                        android:padding="@dimen/_2sdp"
-                        android:layout_marginStart="@dimen/_4sdp"
-                        android:fontFamily="@font/mplus_rounded_1c_bold"
-                        android:textColor="@color/black"/>
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Orthopedic disability"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingBottom="@dimen/_4sdp"
-                        android:textSize="@dimen/_12ssp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Visual disability"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingBottom="@dimen/_4sdp"
-                        android:textSize="@dimen/_12ssp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Mentally and multiple disability"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingBottom="@dimen/_4sdp"
-                        android:textSize="@dimen/_12ssp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_4sdp"
-                        android:text="⦿ Hearing disability"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingBottom="@dimen/_4sdp"
-                        android:textSize="@dimen/_12ssp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Income certificate"
+                            android:padding="@dimen/_5sdp"
+                            android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                            android:textColor="@color/black"
+                            android:layout_margin="@dimen/_5sdp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:fontFamily="@font/mplus_rounded_1c_regular"
+                            android:text="Income certificate is an official statement provided to the citizen by the state government confirming his/her annual income. Income certificates states the different sources of income of an individual."/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/addIncomeCertificate"
+                            android:drawableStart="@drawable/ic_baseline_image_24"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Add income certificate"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:layout_margin="@dimen/_5sdp"
+                            app:fontFamily="@font/mplus_rounded_1c_regular"
+                            android:textColor="@color/black"
+                            />
+
+                    </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnContinue"
                 android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12ssp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_button_enabled"
+                android:text="Continue"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUploadData"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12ssp"

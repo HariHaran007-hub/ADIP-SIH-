@@ -41,6 +41,8 @@ class OtpVerification : AppCompatActivity() {
         et5 = findViewById<EditText>(R.id.inputotp5)
         et6 = findViewById<EditText>(R.id.inputotp6)
         progressBar = findViewById<ProgressBar>(R.id.probar2)
+        Log.d("BackendOtp", "onCreate: "+ intent.getStringExtra("backendotp"))
+
         Log.d("TAG", "onCreate: "+ intent.getStringExtra("mobile"))
 
 
@@ -102,6 +104,7 @@ class OtpVerification : AppCompatActivity() {
                                         else{
                                             val intent = Intent(applicationContext,DetailsCollectingActivity::class.java)
                                             intent.putExtra("mobile", mobileNo)
+                                            intent.putExtra("udidNumber", getIntent().getStringExtra("udidNumber"))
                                             startActivity(intent)
                                             finish()
                                         }

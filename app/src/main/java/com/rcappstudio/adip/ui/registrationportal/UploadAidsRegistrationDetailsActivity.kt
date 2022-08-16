@@ -129,6 +129,8 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun initSpinner(){
         disabilityAdapter = ArrayAdapter.createFromResource(
             this,
@@ -185,7 +187,6 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
                         i.toString() + " : " + items[i].name + " : " + items[i]
                             .isSelected
                     )
-
                     listOfAidsSelected.add(items[i].name)
                 }
             }
@@ -390,17 +391,17 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
 
     private fun createRequestStatus(){
 
-        val requestStatus = RequestStatus(false, false , "Yet to verify the documents", null,false,System.currentTimeMillis(),listOfAidsSelected)
-        requestStatus.message = "Yet to verify the documents"
-
-        databaseReference.child("/${Constants.REQUEST_STATUS}")
-            .setValue(requestStatus)
-            .addOnSuccessListener {
-                notifyAdminPanel()
-                uploadDummyLocation()
-                Snackbar.make(binding.root, "File uploaded successfully!!", Snackbar.LENGTH_LONG)
-                    .show()
-            }
+//        val requestStatus = RequestStatus(false, false , "Yet to verify the documents", null,false,System.currentTimeMillis(),listOfAidsSelected)
+//        requestStatus.message = "Yet to verify the documents"
+//
+//        databaseReference.child("/${Constants.REQUEST_STATUS}")
+//            .setValue(requestStatus)
+//            .addOnSuccessListener {
+//                notifyAdminPanel()
+//                uploadDummyLocation()
+//                Snackbar.make(binding.root, "File uploaded successfully!!", Snackbar.LENGTH_LONG)
+//                    .show()
+//            }
     }
 
     private fun notifyAdminPanel(){

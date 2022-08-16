@@ -33,6 +33,7 @@ class DetailsCollectingActivity : AppCompatActivity() {
     private lateinit var  datePickerDialog : DatePickerDialog
 
     private lateinit var mobileNo : String
+    private lateinit var udidNumber : String
 
 
     private lateinit var binding : ActivityDetailsCollectingBinding
@@ -43,6 +44,7 @@ class DetailsCollectingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mobileNo = intent.getStringExtra("mobile").toString()
+        udidNumber = intent.getStringExtra("udidNumber").toString()
         setSpinnerLayout()
         clickListener()
         initDatePicker()
@@ -270,11 +272,6 @@ class DetailsCollectingActivity : AppCompatActivity() {
             return
         }
 
-        if(binding.etUdidNo.text.isNullOrEmpty()){
-            binding.etUdidNo.requestFocus()
-            binding.etUdidNo.error = "UDID number required"
-            return
-        }
         if(binding.datePicker.text.isNullOrEmpty()){
             binding.datePicker.requestFocus()
             binding.datePicker.error = "Date Required"
@@ -292,23 +289,26 @@ class DetailsCollectingActivity : AppCompatActivity() {
     }
 
     private fun checkDataValidity(){
-        FirebaseDatabase.getInstance().getReference("${Constants.UDID_NO_LIST}/${binding.etUdidNo.text.toString()}")
-            .get().addOnSuccessListener {
-                if(it.exists()){
-                    //TODO: Show bottom sheet error dialog
-                    Toast.makeText(this , "UDID number alreaday exist!!", Toast.LENGTH_LONG)
-                        .show()
-                } else{
-                    val intent = Intent(applicationContext, UploadProfileActivity::class.java)
-                    intent.putExtra(NAME, binding.etName.text.toString())
-                    intent.putExtra(UDID_NUMBER, binding.etUdidNo.text.toString())
-                    intent.putExtra(DATE_OF_BIRTH, binding.datePicker.text.toString())
-                    intent.putExtra(STATE, binding.stateSpinner.selectedItem.toString())
-                    intent.putExtra(DISTRICT, binding.districtSpinner.selectedItem.toString())
-                    intent.putExtra(MOBILE_NO, mobileNo.toString())
-                    startActivity(intent)
-                }
-            }
+        val intent = Intent(applicationContext, UploadProfileActivity::class.java)
+        intent.putExtra(NAME, binding.etName.text.toString())
+        intent.putExtra(UDID_NUMBER, udidNumber)
+        intent.putExtra(DATE_OF_BIRTH, binding.datePicker.text.toString())
+        intent.putExtra(STATE, binding.stateSpinner.selectedItem.toString())
+        intent.putExtra(DISTRICT, binding.districtSpinner.selectedItem.toString())
+        intent.putExtra(MOBILE_NO, mobileNo.toString())
+        startActivity(intent)
+
+//        FirebaseDatabase.getInstance().getReference("${Constants.UDID_NO_LIST}/${udidNumber}")
+//            .get().addOnSuccessListener {
+//                if(it.exists()){
+//                    //TODO: Show bottom sheet error dialog
+//                    Toast.makeText(this , "UDID number alreaday exist!!", Toast.LENGTH_LONG)
+//                        .show()
+//                } else{
+//                    val intent = Intent(applicationContext, UploadProfileActivity::class.java)
+//
+//                }
+//            }
     }
 
     private fun openBrowser(){

@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
+val snakeRegex = " [a-zA-Z]".toRegex()
+
 fun isConnected(context : Context): Boolean {
     val cm = context
         .getSystemService(AppCompatActivity.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -29,4 +31,19 @@ fun isConnected(context : Context): Boolean {
 fun timeStampToHrs(timeStamp : Long) : String{
 
     return SimpleDateFormat("h:mma").format(Date(timeStamp ))
+}
+fun getDateTime(s: Long): String? {
+    return try {
+        val sdf = android.icu.text.SimpleDateFormat("dd/MM/yyyy")
+        val netDate = Date(s)
+        sdf.format(netDate)
+    } catch (e: Exception) {
+        e.toString()
+    }
+}
+fun String.snakeToLowerCamelCase(): String {
+    return snakeRegex.replace(this) {
+        it.value.replace(" ","")
+            .toUpperCase()
+    }
 }

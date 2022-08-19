@@ -23,7 +23,7 @@ class OnboardingActivity : AppCompatActivity() , ClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        supportActionBar!!.hide()
+        supportActionBar!!.hide()
 
         initViews()
     }

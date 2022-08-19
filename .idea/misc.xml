@@ -27,6 +27,7 @@
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_final_registration2.xml" value="0.21927083333333333" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_news.xml" value="0.21927083333333333" />
+        <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_ocr.xml" value="0.176" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_onboarding.xml" value="0.21927083333333333" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_otp_verification.xml" value="0.2" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_profile.xml" value="0.2" />
@@ -41,7 +42,7 @@
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/custom_spinner_item.xml" value="0.21927083333333333" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/custom_toolbar.xml" value="0.21822916666666667" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_application_status.xml" value="0.2" />
-        <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_news.xml" value="0.2" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_ngo_maps.xml" value="0.21927083333333333" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_registration_category.xml" value="0.2" />
@@ -58,7 +59,7 @@
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/spinner_layout.xml" value="0.21927083333333333" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/spinner_layout2.xml" value="0.21927083333333333" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/menu/bottom_nav_menu.xml" value="0.21927083333333333" />
-        <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/menu/toolbar_menu.xml" value="0.21927083333333333" />
+        <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/menu/toolbar_menu.xml" value="0.264" />
       </map>
     </option>
   </component>

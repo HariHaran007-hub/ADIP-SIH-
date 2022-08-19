@@ -19,6 +19,7 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar!!.hide()
         url= intent.getStringExtra("url")!!
 
         binding.webView.settings.javaScriptEnabled = true

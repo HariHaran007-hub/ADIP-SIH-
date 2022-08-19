@@ -46,6 +46,7 @@ class UploadProfileActivity : AppCompatActivity() {
     private lateinit var state: String
     private lateinit var district: String
     private lateinit var mobileNo: String
+    private lateinit var disabilityCategory : String
 
 
     private var imageURI: Uri? = null
@@ -65,6 +66,7 @@ class UploadProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadProfileBinding.inflate(layoutInflater)
+        supportActionBar!!.hide()
         setContentView(binding.root)
         loadingDialog = LoadingDialog(this, "Uploading please wait....")
 
@@ -80,6 +82,7 @@ class UploadProfileActivity : AppCompatActivity() {
         state = intent.getStringExtra(DetailsCollectingActivity.STATE)!!
         district = intent.getStringExtra(DetailsCollectingActivity.DISTRICT)!!
         mobileNo = intent.getStringExtra(DetailsCollectingActivity.MOBILE_NO)!!
+        disabilityCategory = intent.getStringExtra("disabilityCategory")!!
     }
 
     private fun clickListener() {
@@ -149,7 +152,8 @@ class UploadProfileActivity : AppCompatActivity() {
             state,
             district,
 //            false,
-            imageUrl
+            imageUrl,
+            disabilityCategory
         )
 
         val userIdList = UserIdList(state, district)

@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:fontFamily="@font/mplus_rounded_1c_black"
-                android:text="Camps allocated "
+                android:text="Camps allotment"
                 android:textAlignment="center"
                 android:padding="@dimen/_10sdp"
                 android:textColor="@color/black"

@@ -7,6 +7,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.mlkit.common.model.DownloadConditions
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.TranslatorOptions
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.data.model.NgoData
 import com.rcappstudio.adip.data.model.RequestStatus
@@ -22,10 +26,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        supportActionBar!!.hide()
         checkNetworkConnectivity()
         setContentView(binding.root)
         initBottomNavigationView()
         generateFcmToken()
+
+
         val shardPref = getSharedPreferences(Constants.SHARED_PREF_FILE , MODE_PRIVATE)
         val userPath = shardPref.getString(Constants.USER_PROFILE_PATH, null )!!
 //        FirebaseDatabase.getInstance().getReference("$userPath/requestStatus/1660606584448/ngoList")

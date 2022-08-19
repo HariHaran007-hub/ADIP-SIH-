@@ -29,6 +29,7 @@
             tools:context=".ui.fragments.NgoMapsFragment" />
 
         <include
+            android:id="@+id/campLoc"
             layout="@layout/camping_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -21,9 +21,10 @@
                 app:lottie_rawRes="@raw/live_location"/>
 
             <TextView
+                android:id="@+id/locTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Live camp location"
+                android:text="Camp locations"
                 android:padding="@dimen/_5sdp"
                 android:layout_gravity="center"
                 android:textSize="@dimen/_12ssp"

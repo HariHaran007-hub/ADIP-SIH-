@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.firebase.database.FirebaseDatabase
+import com.google.mlkit.nl.translate.Translator
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.data.model.CampingModel
 import com.rcappstudio.adip.data.model.NgoData
@@ -22,7 +23,8 @@ import org.w3c.dom.Text
 
 class AgenciesAdapter (
     val context : Context,
-    val ngoList : List<NgoData>
+    val ngoList : List<NgoData>,
+    private var translator : Translator
         ) : RecyclerView.Adapter<AgenciesAdapter.ViewHolder>(){
 
     class ViewHolder(view : View)  : RecyclerView.ViewHolder(view){
@@ -51,7 +53,9 @@ class AgenciesAdapter (
             .get().addOnSuccessListener { snapshot->
                 if (snapshot.exists()){
                   val ngo = snapshot.getValue(CampingModel::class.java)
-                  holder.agencyName.text = "Agency name: "+ ngo!!.campingName.toString()
+                    translator.translate("Agency name: "+ ngo!!.campingName.toString()).addOnSuccessListener {
+                        holder.agencyName.text = it
+                    }
                   holder.googleMapButton.setOnClickListener {
                       if(ngo.location != null){
                           val uri =
@@ -63,17 +67,29 @@ class AgenciesAdapter (
                       } else{
                           Toast.makeText(context, "Location will be updated soon", Toast.LENGTH_LONG).show()
                       }
-
                   }
                 } else{
                     Toast.makeText(context, "Error occured", Toast.LENGTH_LONG).show()
                 }
             }
-        var aidsText = "Aids providing: "
+        var count = 0
+        var aidsText = ""
         for(aid in ngoIdData.aidsList!!){
-            aidsText += aid +" "
+            if(count == 0){
+                translator.translate("Aids allocated: $aid").addOnSuccessListener {
+                    aidsText += it+", "
+                    holder.aidsList.text  =aidsText
+                    count++
+                }
+            } else {
+                translator.translate(aid).addOnSuccessListener {
+                    aidsText += it+", "
+                    holder.aidsList.text  =aidsText
+                }
+            }
+
         }
-        holder.aidsList.text  =aidsText
+
     }
 
     override fun getItemCount(): Int {

@@ -2,14 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item
-    android:title="@string/support"
-    android:id="@+id/support_chat"
-    android:icon="@drawable/ic_contact_support"
-    app:showAsAction="ifRoom"/>
+    android:title="Call toll free number"
+    android:id="@+id/menuItem"
+    android:icon="@drawable/ic_wifi_can"
+   />
 
-    <item
-        android:title="Profile"
-        android:id="@+id/profile"
-        android:icon="@drawable/ic_baseline_person_24"
-        app:showAsAction="ifRoom"/>
 </menu>

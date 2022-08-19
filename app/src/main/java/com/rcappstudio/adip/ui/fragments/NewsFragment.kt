@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.database.FirebaseDatabase
+import com.google.mlkit.nl.translate.Translator
 import com.rcappstudio.adip.adapter.NewsAdapter
 import com.rcappstudio.adip.databinding.FragmentNewsBinding
 import com.rcappstudio.adip.ui.news.NewsModel
@@ -17,6 +18,7 @@ class NewsFragment : Fragment() {
 
     private lateinit var newsAdapter : NewsAdapter
     private lateinit var newsList: MutableList<NewsModel>
+    private lateinit var translator : Translator
 
     private lateinit var binding : FragmentNewsBinding
     override fun onCreateView(
@@ -36,7 +38,7 @@ class NewsFragment : Fragment() {
 
     private fun initRecyclerView(){
         newsList = mutableListOf()
-        newsAdapter = NewsAdapter(requireContext() , newsList)
+        newsAdapter = NewsAdapter(requireContext() , newsList, translator, )
         binding.rvNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNews.adapter = newsAdapter
     }

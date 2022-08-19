@@ -40,9 +40,10 @@
                     android:orientation="horizontal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Profile"
+                    android:text="Settings"
                     android:layout_gravity="center"
                     android:fontFamily="@font/mplus_rounded_1c_regular"
                     android:textColor="@color/black"/>
@@ -63,6 +64,7 @@
                     android:orientation="horizontal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSupport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Support"
@@ -88,6 +90,7 @@
                     android:orientation="horizontal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNews"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="News"
@@ -110,6 +113,7 @@
                     android:orientation="horizontal"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAgency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Agency"
@@ -130,6 +134,7 @@
 
 
         <TextView
+            android:id="@+id/tvRequestStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Recent updates: "
@@ -158,6 +163,7 @@
             android:background="#6C6969"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSchemeStatistics"
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/mplus_rounded_1c_regular"
             android:layout_width="wrap_content"
@@ -174,6 +180,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNoOfApplication"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -200,6 +207,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNoOfVerification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -228,6 +236,7 @@
             android:background="#6C6969"/>
 
         <TextView
+            android:id="@+id/tvLatestNews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Latest news: "

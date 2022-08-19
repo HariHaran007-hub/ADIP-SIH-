@@ -20,12 +20,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.androidbuts.multispinnerfilter.KeyPairBoolData
 import com.androidbuts.multispinnerfilter.MultiSpinnerListener
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.Translator
+import com.google.mlkit.nl.translate.TranslatorOptions
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -51,27 +56,36 @@ class RegistrationCategoryFragment : Fragment() {
     private lateinit var binding: FragmentRegistrationCategoryBinding
 
     private lateinit var loadingDialog: LoadingDialog
-    private lateinit var userPath : String
+    private lateinit var userPath: String
 
-    private lateinit var userId : String
-    private lateinit var state : String
-    private lateinit var district : String
+    private lateinit var userId: String
+    private lateinit var state: String
+    private lateinit var district: String
 
     private lateinit var orthopedicDisabilityList: MutableList<KeyPairBoolData>
     private lateinit var visualDisabilityList: MutableList<KeyPairBoolData>
     private lateinit var hearingDisabilityList: MutableList<KeyPairBoolData>
     private lateinit var multipleDisabilityList: MutableList<KeyPairBoolData>
 
-    private lateinit var listOfAidsSelected: MutableList<String>
-    private  var incomeCertificateUri : Uri? = null
+    private lateinit var translator : Translator
 
-    val orthoDisability = "Orthopedic disability"
-    val hearingDisability = "Hearing disability"
+    private lateinit var listOfAidsSelected: MutableList<String>
+    private var incomeCertificateUri: Uri? = null
+
+    var orthoDisability = false
+    var hearingDisability = false
+    var visualDisability = false
+    var mentallyAndMultipleDisability = false
+
+    val orthopedicDisabilityConst = "Orthopedic disability"
+    val hearingDisabilityConst = "Hearing disability"
+    val visualSisabilityConst = "Visual disability"
+    val mentallyAndMultipleDisabilityConst = "Mentally and multiple disability"
 
     private val getImage = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) {
-        if(it != null){
+        if (it != null) {
             binding.ivIncomeCertificate.visibility = View.VISIBLE
             binding.ivIncomeCertificate.setImageURI(it)
             incomeCertificateUri = it
@@ -92,21 +106,23 @@ class RegistrationCategoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadingDialog = LoadingDialog(requireActivity(), "Loading portal info....")
         //loadingDialog.startLoading()
-        Log.d("aidsList", "onViewCreated: ${"Assistive and alarm devices".snakeToLowerCamelCase()} ")
-        val sharedPreferences = requireContext().getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
+        Log.d(
+            "aidsList",
+            "onViewCreated: ${"Assistive and alarm devices".snakeToLowerCamelCase()} "
+        )
+        val sharedPreferences =
+            requireContext().getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
         userPath = sharedPreferences.getString(Constants.USER_PROFILE_PATH, null)!!
         userId = FirebaseAuth.getInstance().uid!!
         state = sharedPreferences.getString(Constants.STATE, null)!!
-        district = sharedPreferences.getString(Constants.DISTRICT , null)!!
+        district = sharedPreferences.getString(Constants.DISTRICT, null)!!
+        prepareModel()
         fetchList()
         fetchAlreadyAppliedAids()
 
         binding.btnContinue.setOnClickListener {
             validateAidsList()
         }
-
-//        FirebaseDatabase.getInstance().getReference("$userPath/requestStatus/1660545428574/ngoList/-N8lgOhH1sxsPj__D8Xl")
-//            .setValue(NgoData(mutableListOf("Educational kits", "Tricycle"), false , "-N8lgOhH1sxsPj__D8Xl" ))
 
     }
 
@@ -160,19 +176,19 @@ class RegistrationCategoryFragment : Fragment() {
 
     }
 
-    private fun fetchAlreadyAppliedAids(){
+    private fun fetchAlreadyAppliedAids() {
 
 
         val alreadyAppliedList = mutableListOf<String>()
         FirebaseDatabase.getInstance().getReference("$userPath/${Constants.AIDS_APPLIED}").get()
-            .addOnSuccessListener { snapshot->
-                if(snapshot.exists()){
-                    for(s in snapshot.children){
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.exists()) {
+                    for (s in snapshot.children) {
                         aidsCount++
                         alreadyAppliedList.add(s.key!!)
                     }
                     validCount = 5 - aidsCount//TODO: Increase maximum logic
-                    if(validCount <= 0){
+                    if (validCount <= 0) {
                         //TODO : show portal closed
                         binding.multipleItemSelectionSpinner.visibility = View.GONE
                         binding.btnContinue.visibility = View.GONE
@@ -183,35 +199,176 @@ class RegistrationCategoryFragment : Fragment() {
                         loadingDialog.isDismiss()
                         return@addOnSuccessListener
                     }
-                    categoryConditionChecker(alreadyAppliedList)
+                    extractCategoryFromDatabase(alreadyAppliedList)
                     loadingDialog.isDismiss()
-                } else{
-                    validCount = 5
+                } else {
+                    validCount = 5 //TODO: Set maximum limit
                     loadingDialog.isDismiss()
-                    categoryConditionChecker(alreadyAppliedList)
+                    extractCategoryFromDatabase(alreadyAppliedList)
                 }
             }
     }
 
-    private fun categoryConditionChecker(appliedList : MutableList<String>) {
+    private fun extractCategoryFromDatabase(appliedAidsList: MutableList<String>) {
+        FirebaseDatabase.getInstance().getReference("$userPath/disabilityCategory")
+            .get().addOnSuccessListener {
+                if (it.exists()) {
+                    val category = it.value.toString()
+                    categoryConditionChecker(appliedAidsList, category.split(',').toMutableList())
+                }
+            }
+
+    }
+
+    private fun categoryConditionChecker(
+        appliedList: MutableList<String>,
+        categoryList: MutableList<String>
+    ) {
 
         //TODO : Get data from shared pref to check the categories of users
+        for (i in categoryList) {
+            Log.d("valuewData", "categoryConditionChecker: $i")
+            when (i.trim()) {
+                orthopedicDisabilityConst -> {
+                    orthoDisability = true
+                }
+                visualSisabilityConst -> visualDisability = true
+                hearingDisabilityConst -> hearingDisability = true
+                mentallyAndMultipleDisabilityConst -> mentallyAndMultipleDisability = true
+            }
+        }
 
-        if (orthoDisability == "Orthopedic disability" && hearingDisability == "Hearing disability") {
+        //TODO: Set multi item spinner and automate it
+
+        if (hearingDisability && orthoDisability) {
             val list = hearingDisabilityList + orthopedicDisabilityList
             val filteredAidsList = mutableListOf<KeyPairBoolData>()
-            for(aidKeyBoolPair in list){
-                if(!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())){
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
                     filteredAidsList.add(aidKeyBoolPair)
                 }
             }
             setMultipleSpinner(filteredAidsList)
-        }
-        else if(orthoDisability == "Orthopedic disability"){
+        } else if (hearingDisability && visualDisability) {
+
+            val list = hearingDisabilityList + visualDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+        } else if (hearingDisability && mentallyAndMultipleDisability) {
+            val list = hearingDisabilityList + multipleDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+        } else if (orthoDisability && visualDisability) {
+
+            val list = orthopedicDisabilityList + visualDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+
+        } else if (orthoDisability && mentallyAndMultipleDisability) {
+            val list = orthopedicDisabilityList + multipleDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+
+        } else if (mentallyAndMultipleDisability && visualDisability) {
+            val list = multipleDisabilityList + visualDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+        } else if (mentallyAndMultipleDisability && visualDisability && orthoDisability) {
+            val list = multipleDisabilityList + visualDisabilityList + orthopedicDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+        } else if (orthoDisability && mentallyAndMultipleDisability && hearingDisability) {
+            val list = orthopedicDisabilityList + multipleDisabilityList + hearingDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+        } else if (orthoDisability && visualDisability && hearingDisability) {
+            val list = orthopedicDisabilityList + visualDisabilityList + hearingDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+        } else if (mentallyAndMultipleDisability) {
+            val list = multipleDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+
+        } else if (hearingDisability) {
+            val list = hearingDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+        } else if (orthoDisability) {
             val list = orthopedicDisabilityList
             val filteredAidsList = mutableListOf<KeyPairBoolData>()
-            for(aidKeyBoolPair in list){
-                if(!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())){
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
+                    filteredAidsList.add(aidKeyBoolPair)
+                }
+            }
+            setMultipleSpinner(filteredAidsList)
+
+        } else if (visualDisability) {
+            val list = visualDisabilityList
+            val filteredAidsList = mutableListOf<KeyPairBoolData>()
+            for (aidKeyBoolPair in list) {
+                if (!appliedList.contains(aidKeyBoolPair.name.snakeToLowerCamelCase())) {
                     filteredAidsList.add(aidKeyBoolPair)
                 }
             }
@@ -219,7 +376,14 @@ class RegistrationCategoryFragment : Fragment() {
         }
     }
 
-    private fun setMultipleSpinner(filteredAidsList : MutableList<KeyPairBoolData>){
+    private fun setMultipleSpinner(filteredAidsList: MutableList<KeyPairBoolData>) {
+        if(filteredAidsList.isEmpty()){
+            binding.multipleItemSelectionSpinner.visibility = View.GONE
+            binding.btnContinue.visibility = View.GONE
+            binding.selectTv.visibility = View.GONE
+            binding.lottieFile.visibility = View.VISIBLE
+            binding.tvStatus.visibility = View.VISIBLE
+        }
         binding.multipleItemSelectionSpinner.setLimit(validCount, object : MultiSpinnerListener,
             MultiSpinnerSearch.LimitExceedListener {
             override fun onItemsSelected(selectedItems: MutableList<KeyPairBoolData>?) {
@@ -246,24 +410,23 @@ class RegistrationCategoryFragment : Fragment() {
             }
         }
 
-        for(i in filteredAidsList){
+        for (i in filteredAidsList) {
             Log.d("aidsList", "setMultipleSpinner: ${i.name.toString()}")
         }
     }
 
-    private fun validateAidsList(){
+    private fun validateAidsList() {
 
-        if(listOfAidsSelected.size in 0..validCount){
+        if (listOfAidsSelected.size in 0..validCount) {
             uploadIncomeCertificateView()
-        }
-        else {
+        } else {
             listOfAidsSelected.clear()
             binding.multipleItemSelectionSpinner.setClearText("")
             Toast.makeText(requireContext(), "Limit has exceeded", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun uploadIncomeCertificateView(){
+    private fun uploadIncomeCertificateView() {
         binding.llIvCertificate.visibility = View.VISIBLE
         binding.btnContinue.visibility = View.GONE
         binding.btnUploadData.visibility = View.VISIBLE
@@ -278,18 +441,18 @@ class RegistrationCategoryFragment : Fragment() {
         }
     }
 
-    private fun uploadToDatabase(){
+    private fun uploadToDatabase() {
         var incomeCertificateUrl = ""
-        if(incomeCertificateUri != null){
-
-            for(aid in listOfAidsSelected){
-                FirebaseDatabase.getInstance().getReference("$userPath/${Constants.AIDS_APPLIED}/${aid.snakeToLowerCamelCase()}")
+        if (incomeCertificateUri != null) {
+            for (aid in listOfAidsSelected) {
+                FirebaseDatabase.getInstance()
+                    .getReference("$userPath/${Constants.AIDS_APPLIED}/${aid.snakeToLowerCamelCase()}")
                     .setValue(false)
             }
             FirebaseStorage.getInstance()
                 .getReference("/userFiles/${FirebaseAuth.getInstance().uid!!}/${Constants.INCOME_CERTIFICATE}")
                 .putFile(incomeCertificateUri!!).addOnSuccessListener {
-                    it.storage.downloadUrl.addOnSuccessListener {d->
+                    it.storage.downloadUrl.addOnSuccessListener { d ->
                         incomeCertificateUrl = d.toString().trim()
                         updateRequestStatus(incomeCertificateUrl)
                     }
@@ -297,35 +460,40 @@ class RegistrationCategoryFragment : Fragment() {
         }
     }
 
-    private fun updateRequestStatus(incomeCertificateUrl : String){
+    private fun updateRequestStatus(incomeCertificateUrl: String) {
 
         //TODO: Update request status
-        val timeStamp : Long = System.currentTimeMillis()
+        val timeStamp: Long = System.currentTimeMillis()
         updateRequestStatus2(incomeCertificateUrl, timeStamp)
 
     }
 
-    private fun updateRequestStatus2(incomeCertificateUrl: String , timeStamp : Long){
+    private fun updateRequestStatus2(incomeCertificateUrl: String, timeStamp: Long) {
         FirebaseDatabase.getInstance()
             .getReference("${Constants.VERIFICATION_APPLIED}/$state/$district")
             .child(userId).setValue(VerificationApplied(userId, state, district))
-        FirebaseDatabase.getInstance().getReference("$userPath/${Constants.REQUEST_STATUS}/$timeStamp")
-            .setValue(RequestStatus(
-                verified = false,
-                notAppropriate = false,
-                message = "Yet to verified",
-                aidsReceived = false,
-                appliedOnTimeStamp = timeStamp,
-                aidsList = listOfAidsSelected,
-                incomeCertificate = incomeCertificateUrl
-            )).addOnCompleteListener {
-                if(it.isSuccessful){
+        FirebaseDatabase.getInstance()
+            .getReference("$userPath/${Constants.REQUEST_STATUS}/$timeStamp")
+            .setValue(
+                RequestStatus(
+                    verified = false,
+                    notAppropriate = false,
+                    message = "Yet to verified",
+                    aidsReceived = false,
+                    appliedOnTimeStamp = timeStamp,
+                    aidsList = listOfAidsSelected,
+                    incomeCertificate = incomeCertificateUrl
+                )
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
                     //TODO : Remove loading dialog
+                    Snackbar.make(binding.root, "Files uploaded successfully", Snackbar.LENGTH_LONG)
+                        .show()
                     loadingDialog.isDismiss()
+                    requireActivity().onBackPressed()
                 }
             }
     }
-
 
 
     private fun permissionChecker() {
@@ -338,7 +506,8 @@ class RegistrationCategoryFragment : Fragment() {
 
                 override fun onPermissionDenied(response: PermissionDeniedResponse) {
                     Toast.makeText(
-                        requireContext(), "You have denied!! gallery permissions",
+                        requireContext(),
+                        "You have denied!! gallery permissions",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -372,5 +541,66 @@ class RegistrationCategoryFragment : Fragment() {
     }
 
 
+    private fun prepareModel(){
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
+            .getString(Constants.LANGUAGE, null)
+        if(sharedPreferences != null){
+            val options = TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.ENGLISH)
+                .setTargetLanguage(sharedPreferences)
+                .build()
+            translator = Translation.getClient(options)
 
+            translator.downloadModelIfNeeded().addOnSuccessListener {
+                translateLanguage()
+            }.addOnFailureListener {
+
+            }
+            translator.translate(binding.customToolBar.toolbar.title.toString()).addOnSuccessListener {
+                binding.customToolBar.toolbar.title = it
+            }
+        }
+    }
+
+    private fun translateLanguage(){
+        translator.translate(binding.tvRegistration.text.toString()).addOnSuccessListener {
+            binding.tvRegistration.text = it
+        }
+        translator.translate(binding.selectTv.text.toString()).addOnSuccessListener {
+            binding.selectTv.text = it
+        }
+
+        translator.translate(binding.btnContinue.text.toString()).addOnSuccessListener {
+            binding.btnContinue.text = it
+        }
+
+        translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
+            binding.btnContinue.text = it
+        }
+
+        translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
+            binding.btnContinue.text = it
+        }
+
+        translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
+            binding.btnContinue.text = it
+        }
+
+        translator.translate(binding.tvIncomeCertificate.text.toString()).addOnSuccessListener {
+            binding.tvIncomeCertificate.text = it
+        }
+
+        translator.translate(binding.tvIncomeCertificatePara.text.toString()).addOnSuccessListener {
+            binding.tvIncomeCertificatePara.text = it
+        }
+
+        translator.translate(binding.addIncomeCertificate.text.toString()).addOnSuccessListener {
+            binding.addIncomeCertificate.text = it
+        }
+
+        translator.translate(binding.tvStatus.text.toString()).addOnSuccessListener {
+            binding.tvStatus.text = it
+        }
+
+    }
 }

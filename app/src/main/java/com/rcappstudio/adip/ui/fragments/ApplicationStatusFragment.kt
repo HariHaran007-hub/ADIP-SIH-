@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.Translator
+import com.google.mlkit.nl.translate.TranslatorOptions
 import com.rcappstudio.adip.adapter.RequestStatusAdapter
 import com.rcappstudio.adip.data.model.*
 import com.rcappstudio.adip.databinding.FragmentApplicationStatusBinding
@@ -33,6 +37,8 @@ class ApplicationStatusFragment : Fragment() {
     private lateinit var userId: String
     private lateinit var loadingDialog: LoadingDialog
 
+    private lateinit var translator : Translator
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +50,7 @@ class ApplicationStatusFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        prepareModel()
         loadingDialog = LoadingDialog(requireActivity(), "Loading application status....")
         //loadingDialog.startLoading()
         initDataModule()
@@ -88,7 +95,28 @@ class ApplicationStatusFragment : Fragment() {
 
     private fun initRecyclerView(requestStatusList : MutableList<RequestStatus>){
         binding.rvRequestStatus.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
-        binding.rvRequestStatus.adapter = RequestStatusAdapter(requireContext(), requestStatusList)
+        binding.rvRequestStatus.adapter = RequestStatusAdapter(requireContext(), requestStatusList, translator)
+    }
+
+
+    private fun prepareModel(){
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
+            .getString(Constants.LANGUAGE, null)
+        if(sharedPreferences != null){
+            val options = TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.ENGLISH)
+                .setTargetLanguage(sharedPreferences)
+                .build()
+            translator = Translation.getClient(options)
+
+            translator.downloadModelIfNeeded().addOnSuccessListener {
+            }.addOnFailureListener {
+
+            }
+            translator.translate(binding.customToolbar.toolbar.title.toString()).addOnSuccessListener {
+                binding.customToolbar.toolbar.title = it
+            }
+        }
     }
 
 

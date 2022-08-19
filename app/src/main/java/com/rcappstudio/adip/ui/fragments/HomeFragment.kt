@@ -1,6 +1,7 @@
 package com.rcappstudio.adip.ui.fragments
 
 import android.app.AlertDialog
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +17,10 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.database.FirebaseDatabase
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.Translator
+import com.google.mlkit.nl.translate.TranslatorOptions
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.adapter.NewsAdapter
 import com.rcappstudio.adip.adapter.SliderAdapter
@@ -39,6 +44,8 @@ class HomeFragment : Fragment() {
     private lateinit var newsList: MutableList<NewsModel>
     private lateinit var isdialog : AlertDialog
     private lateinit var inflater: LayoutInflater
+    private lateinit var translator : Translator
+    private  var toHindi : Boolean = true
 
     private val sliderRunnable = Runnable{
         binding.updatesBanner.currentItem = binding.updatesBanner.currentItem + 1
@@ -59,7 +66,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        prepareModel()
         showNetworkErrorDialog()
+
         init()
 
     }
@@ -129,7 +138,7 @@ class HomeFragment : Fragment() {
     }
     private fun initRecyclerView(){
         newsList = mutableListOf()
-        newsAdapter = NewsAdapter(requireContext() , newsList)
+        newsAdapter = NewsAdapter(requireContext() , newsList, translator)
         binding.rvNews.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvNews.adapter = newsAdapter
     }
@@ -173,6 +182,77 @@ class HomeFragment : Fragment() {
         builder.setView(dialogView)
         builder.setCancelable(false)
         isdialog = builder.create()
+    }
+
+    private fun prepareModel(){
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
+            .getString(Constants.LANGUAGE, null)
+        if(sharedPreferences != null){
+            val options = TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.ENGLISH)
+                .setTargetLanguage(sharedPreferences)
+                .build()
+            translator = Translation.getClient(options)
+
+            translator.downloadModelIfNeeded().addOnSuccessListener {
+                translateLanguage()
+            }.addOnFailureListener {
+
+            }
+        }
+    }
+
+    private fun translateLanguage() {
+        translator.translate(binding.tvProfile.text.toString()).addOnSuccessListener {
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvProfile.text = it
+        }
+
+        translator.translate(binding.tvSupport.text.toString()).addOnSuccessListener {
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvSupport.text = it
+        }
+
+        translator.translate(binding.tvNews.text.toString()).addOnSuccessListener {
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvNews.text = it
+        }
+
+        translator.translate(binding.tvAgency.text.toString()).addOnSuccessListener {
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvAgency.text = it
+        }
+
+        translator.translate(binding.tvRequestStatus.text.toString()).addOnSuccessListener {
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvRequestStatus.text = it
+        }
+
+        translator.translate(binding.tvLatestNews.text.toString()).addOnSuccessListener {
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvLatestNews.text = it
+        }
+
+        translator.translate(binding.tvSchemeStatistics.text.toString()).addOnSuccessListener {
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvSchemeStatistics.text = it
+        }
+
+        translator.translate(binding.tvNoOfApplication.text.toString()).addOnSuccessListener {
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvNoOfApplication.text = it
+        }
+
+        translator.translate(binding.tvNoOfVerification.text.toString()).addOnSuccessListener {
+
+            Log.d("tabData", "translateLanguage: $it")
+            binding.tvNoOfVerification.text = it
+        }
+
+        translator.translate(binding.customToolBar.toolbar.title.toString()).addOnSuccessListener {
+            binding.customToolBar.toolbar.title = it
+        }
+
 
     }
 

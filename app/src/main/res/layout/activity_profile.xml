@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_gravity="center_horizontal"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
     tools:context=".ui.activity.ProfileActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -18,17 +18,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
-        app:strokeColor="@color/pink"
-        app:strokeWidth="@dimen/_1sdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_30sdp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:cardElevation="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView">
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView"
+        app:strokeColor="@color/pink"
+        app:strokeWidth="@dimen/_1sdp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -43,68 +44,68 @@
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
                 android:text="Name: HARI HARAN R C"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_margin="@dimen/_5sdp"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvMobileNo"
-                android:textStyle="bold"
-                android:layout_margin="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
                 android:text="Mobile number: 8838387219"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvUdidNo"
-                android:layout_margin="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
                 android:text="UDID number: 12345678"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/tvDOB"
                 android:layout_width="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
-                android:textStyle="bold"
                 android:text="DOB: 25th, June 2002"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvState"
                 android:layout_width="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
-                android:textStyle="bold"
                 android:text="State: Tamil Nadu"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvDistrict"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
                 android:text="District: Dindigul"
-                android:textStyle="bold"
-                android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -115,15 +116,45 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="From Knot idea"
-        android:textStyle="bold"
-        android:textSize="@dimen/_14sdp"
-        android:fontFamily="@font/mplus_rounded_1c_bold"
-        android:textColor="@color/pink"
         android:layout_marginBottom="@dimen/_20sdp"
+        android:fontFamily="@font/mplus_rounded_1c_bold"
+        android:text="From Knot idea"
+        android:textColor="@color/pink"
+        android:textSize="@dimen/_14sdp"
+
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+    <TextView
+        android:id="@+id/tvStateSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="6dp"
+        android:text="State"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+        app:layout_constraintVertical_bias="0.212" />
+
+    <Spinner
+        android:id="@+id/languageSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_below="@id/tvStateSpinner"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStateSpinner"
+        app:layout_constraintVertical_bias="0.23" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

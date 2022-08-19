@@ -5,6 +5,10 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.database.FirebaseDatabase
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.Translator
+import com.google.mlkit.nl.translate.TranslatorOptions
 import com.rcappstudio.adip.adapter.NewsAdapter
 import com.rcappstudio.adip.databinding.ActivityNewsBinding
 import com.rcappstudio.adip.utils.Constants
@@ -12,6 +16,7 @@ import com.rcappstudio.adip.utils.Constants
 class NewsActivity : AppCompatActivity() {
     private lateinit var newsAdapter : NewsAdapter
     private lateinit var newsList: MutableList<NewsModel>
+    private lateinit var translator : Translator
 
     private lateinit var binding : ActivityNewsBinding
 
@@ -19,6 +24,7 @@ class NewsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
          binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        prepareModel()
         initRecyclerView()
         refreshLayoutSetup()
         getNewsFromDatabase()
@@ -26,7 +32,7 @@ class NewsActivity : AppCompatActivity() {
 
     private fun initRecyclerView(){
         newsList = mutableListOf()
-        newsAdapter = NewsAdapter(applicationContext , newsList)
+        newsAdapter = NewsAdapter(applicationContext , newsList, translator)
         binding.rvNews.layoutManager = LinearLayoutManager(applicationContext)
         binding.rvNews.adapter = newsAdapter
     }
@@ -52,5 +58,22 @@ class NewsActivity : AppCompatActivity() {
                     binding.refreshLayout.isRefreshing = false
                 }
             }
+    }
+
+    private fun prepareModel(){
+        val sharedPreferences = getSharedPreferences(Constants.SHARED_PREF_FILE, MODE_PRIVATE)
+            .getString(Constants.LANGUAGE, null)
+        if(sharedPreferences != null){
+            val options = TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.ENGLISH)
+                .setTargetLanguage(sharedPreferences)
+                .build()
+            translator = Translation.getClient(options)
+
+            translator.downloadModelIfNeeded().addOnSuccessListener {
+            }.addOnFailureListener {
+
+            }
+        }
     }
 }

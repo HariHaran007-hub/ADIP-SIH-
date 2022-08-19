@@ -1,5 +1,6 @@
 package com.rcappstudio.adip.ui.fragments
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -15,6 +16,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.FirebaseDatabase
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.Translator
+import com.google.mlkit.nl.translate.TranslatorOptions
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.data.model.CampingModel
 import com.rcappstudio.adip.databinding.FragmentHomeBinding
@@ -23,6 +28,7 @@ import com.rcappstudio.adip.utils.Constants
 
 class NgoMapsFragment : Fragment() {
 
+    private lateinit var translator: Translator
     private lateinit var map: GoogleMap
     private lateinit var binding: FragmentNgoMapsBinding
 
@@ -47,6 +53,7 @@ class NgoMapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+        prepareModel()
         fetchCampingLocations()
     }
 
@@ -69,5 +76,26 @@ class NgoMapsFragment : Fragment() {
                     }
                 }
             }
+    }
+    private fun prepareModel(){
+        val sharedPreferences = requireContext().getSharedPreferences(Constants.SHARED_PREF_FILE,
+            Context.MODE_PRIVATE
+        )
+            .getString(Constants.LANGUAGE, null)
+        if(sharedPreferences != null){
+            val options = TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.ENGLISH)
+                .setTargetLanguage(sharedPreferences)
+                .build()
+            translator = Translation.getClient(options)
+
+            translator.downloadModelIfNeeded().addOnSuccessListener {
+                translator.translate(binding.campLoc.locTv.text.toString()).addOnSuccessListener {
+                    binding.campLoc.locTv.text = it
+                }
+            }.addOnFailureListener {
+
+            }
+        }
     }
 }

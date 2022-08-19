@@ -1,11 +1,16 @@
 package com.rcappstudio.adip.ui.activity
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.rcappstudio.adip.R
 import com.rcappstudio.adip.adapter.ChatAdapter
 import com.rcappstudio.adip.adapter.InitChat
 import com.rcappstudio.adip.databinding.ActivityChatBinding
@@ -126,6 +131,23 @@ class ChatActivity : AppCompatActivity() {
                 }
                 }
         })
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menuItem ->{
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:6385342854")
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

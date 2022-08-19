@@ -31,6 +31,7 @@ class SendOtpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySendOtpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar!!.hide()
         loadingDialog = LoadingDialog(this, "Sending OTP to +91 ${binding.inputMobNo.text.toString().trim()}")
 
 

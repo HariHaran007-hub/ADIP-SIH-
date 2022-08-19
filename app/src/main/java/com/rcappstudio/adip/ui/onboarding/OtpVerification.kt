@@ -33,6 +33,7 @@ class OtpVerification : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otp_verification)
+        supportActionBar!!.hide()
 
         et1 = findViewById<EditText>(R.id.inputotp1)
         et2 = findViewById<EditText>(R.id.inputotp2)

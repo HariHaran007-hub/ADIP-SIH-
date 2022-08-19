@@ -15,6 +15,7 @@ class Constants {
         const val DISTRICT = "DISTRICT"
         const val AUTH_ID = "AUTH_ID"
         const val USER_PROFILE_PATH = "USER_PROFILE_PATH"
+        const val LANGUAGE = "LANGUAGE"
 
         //Verification image names
         const val DISABILITY_CERTIFICATE = "disabilityCertificate"
@@ -40,6 +41,8 @@ class Constants {
         const val CATEGORY_VISUAL_DISABILITY = "visualDisability"
         const val CATEGORY_HEARING_DISABILITY = "hearingDisability"
         const val CATEGORY_MENTALLY_AND_MULTIPLE_DISABILITY = "mentallyAndMultipleDisability"
+
+
 
         //Orthopedic disability
         //const val

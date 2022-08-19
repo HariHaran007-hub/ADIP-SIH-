@@ -10,13 +10,15 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
+import com.google.mlkit.nl.translate.Translator
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.data.model.RequestStatus
 import com.rcappstudio.adip.utils.getDateTime
 
 class RequestStatusAdapter(
     private val context: Context,
-    private var requestStatusList : MutableList<RequestStatus>
+    private var requestStatusList : MutableList<RequestStatus>,
+    private var translator : Translator
 ) : RecyclerView.Adapter<RequestStatusAdapter.ViewHolder>() {
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view)  {
@@ -36,6 +38,7 @@ class RequestStatusAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val requestStatus = requestStatusList[position]
+
         if(requestStatus.verified){
             holder.rootCardView.strokeColor = ContextCompat.getColor(context, R.color.greenLight)
             holder.rootCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.greenLightLight))
@@ -43,33 +46,60 @@ class RequestStatusAdapter(
             holder.rootCardView.strokeColor = ContextCompat.getColor(context, R.color.redLight)
             holder.rootCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.redLightLight))
         }
-        holder.tvApplicationStatus.text = "Application ${position+1}"
-        holder.tvAppliedOn.text = "Applied on: ${getDateTime(requestStatus.appliedOnTimeStamp!!)}"
-        var aidsTextData = "Aids applied for:"
-        var count = 0
-        for(aid in requestStatus.aidsList!!){
-            count++
-            aidsTextData = aidsTextData + "\n\t\t\t\t\t\t$count) $aid"
+        translator.translate("Application: ${position+1}").addOnSuccessListener {
+            holder.tvApplicationStatus.text = it
         }
-        holder.tvAidsApplies.text = aidsTextData
+
+        translator.translate("Submitted on: ${getDateTime(requestStatus.appliedOnTimeStamp!!)}").addOnSuccessListener {
+            holder.tvAppliedOn.text = it
+        }
+        var aidsTextData = ""
+        var count = 1
+        for(aid in requestStatus.aidsList!!){
+            if(count == 1){
+                translator.translate("Aids applied for: $count)$aid").addOnSuccessListener {
+                    aidsTextData = aidsTextData + "\n" +
+                            "\t\t\t\t\t\t$it"
+                    holder.tvAidsApplies.text = aidsTextData
+                    count++
+                }
+            } else {
+                translator.translate(aid).addOnSuccessListener {
+                    aidsTextData = aidsTextData + "\n\t\t\t\t\t\t$count)$it"
+                    holder.tvAidsApplies.text = aidsTextData
+                    count++
+                }
+            }
+
+        }
+
 
         if(!requestStatus.verified){
-            holder.tvStatus.text = "Application not yet verified"
-            holder.statusCardView.setStrokeColor(ContextCompat.getColor(context, R.color.red))
+            translator.translate("Application not yet verified").addOnSuccessListener {
+                holder.tvStatus.text = it
+            }
+            holder.statusCardView.strokeColor = ContextCompat.getColor(context, R.color.red)
             holder.statusCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.redLight))
         } else if(requestStatus.notAppropriate){
-            holder.tvStatus.text = "Application rejected apply with new application"
-            holder.statusCardView.setStrokeColor(ContextCompat.getColor(context, R.color.red))
+            translator.translate("Application rejected apply with new application").addOnSuccessListener {
+                holder.tvStatus.text = it
+            }
+            holder.statusCardView.strokeColor = ContextCompat.getColor(context, R.color.red)
             holder.statusCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.redLight))
         }
         else{
             holder.statusCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.greenLight))
-            holder.statusCardView.setStrokeColor(ContextCompat.getColor(context, R.color.green))
-            holder.tvStatus.text = "Application verified successfully"
+            holder.statusCardView.strokeColor = ContextCompat.getColor(context, R.color.green)
+            translator.translate("Application verified successfully").addOnSuccessListener {
+                holder.tvStatus.text = it
+            }
             holder.rvcamps.visibility = View.VISIBLE
             holder.campAllocated.visibility = View.VISIBLE
+            translator.translate(holder.campAllocated.text.toString()).addOnSuccessListener {
+                holder.campAllocated.text = it
+            }
             holder.rvcamps.layoutManager = LinearLayoutManager(context)
-            holder.rvcamps.adapter = AgenciesAdapter(context, requestStatus.ngoList!!.values.toMutableList())
+            holder.rvcamps.adapter = AgenciesAdapter(context, requestStatus.ngoList!!.values.toMutableList(), translator)
             holder.statusCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.greenLight))
         }
     }

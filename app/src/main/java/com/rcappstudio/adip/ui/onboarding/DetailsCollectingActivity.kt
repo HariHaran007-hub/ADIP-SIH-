@@ -15,6 +15,7 @@ import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
+import com.rcappstudio.adip.OcrActivity
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.databinding.ActivityDetailsCollectingBinding
 import com.rcappstudio.adip.utils.Constants
@@ -42,7 +43,7 @@ class DetailsCollectingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsCollectingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar!!.hide()
         mobileNo = intent.getStringExtra("mobile").toString()
         udidNumber = intent.getStringExtra("udidNumber").toString()
         setSpinnerLayout()
@@ -289,7 +290,7 @@ class DetailsCollectingActivity : AppCompatActivity() {
     }
 
     private fun checkDataValidity(){
-        val intent = Intent(applicationContext, UploadProfileActivity::class.java)
+        val intent = Intent(applicationContext, OcrActivity::class.java)
         intent.putExtra(NAME, binding.etName.text.toString())
         intent.putExtra(UDID_NUMBER, udidNumber)
         intent.putExtra(DATE_OF_BIRTH, binding.datePicker.text.toString())

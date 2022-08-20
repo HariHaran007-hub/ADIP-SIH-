@@ -53,15 +53,14 @@ class RequestStatusAdapter(
         translator.translate("Submitted on: ${getDateTime(requestStatus.appliedOnTimeStamp!!)}").addOnSuccessListener {
             holder.tvAppliedOn.text = it
         }
-        var aidsTextData = ""
-        var count = 1
+        var aidsTextData = "\n"
+        var count = 0
         for(aid in requestStatus.aidsList!!){
+            count++
             if(count == 1){
                 translator.translate("Aids applied for: $count)$aid").addOnSuccessListener {
-                    aidsTextData = aidsTextData + "\n" +
-                            "\t\t\t\t\t\t$it"
+                    aidsTextData = aidsTextData + "\n\t\t\t\t\t\t$it"
                     holder.tvAidsApplies.text = aidsTextData
-                    count++
                 }
             } else {
                 translator.translate(aid).addOnSuccessListener {

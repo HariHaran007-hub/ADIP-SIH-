@@ -601,6 +601,12 @@ class RegistrationCategoryFragment : Fragment() {
         translator.translate(binding.tvStatus.text.toString()).addOnSuccessListener {
             binding.tvStatus.text = it
         }
+        translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
+            binding.btnContinue.text = it
+        }
+        translator.translate(binding.multipleItemSelectionSpinner.hintText.toString()).addOnSuccessListener {
+            binding.multipleItemSelectionSpinner.hintText = it
+        }
 
     }
 }

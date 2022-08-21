@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.HomeFragment">
@@ -18,117 +20,128 @@
             android:id="@+id/customToolBar"
             layout="@layout/custom_toolbar"/>
 
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-
+        <com.google.android.material.card.MaterialCardView
             android:layout_marginTop="@dimen/_10sdp"
-            android:gravity="center_horizontal"
             android:layout_width="match_parent"
+            app:strokeColor="@color/pink"
+            app:strokeWidth="1dp"
+            app:cardElevation="@dimen/_10sdp"
+            android:layout_margin="@dimen/_10sdp"
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/profile"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:padding="@dimen/_5sdp"
                 android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:backgroundTint="@color/pinkFaded"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/cv__29__generated"
-                    android:orientation="horizontal"/>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvProfile"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/profile"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Settings"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/mplus_rounded_1c_regular"
-                    android:textColor="@color/black"/>
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:backgroundTint="@color/pinkFaded"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/cv__29__generated"
+                        android:orientation="horizontal"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:textColor="@color/black"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/supportChat"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/support"
+                        android:orientation="horizontal"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvSupport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Support"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:textColor="@color/black"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/news"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/news"
+                        android:orientation="horizontal"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvNews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="News"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:textColor="@color/black"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/agency"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/ngo"
+                        android:orientation="horizontal"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAgency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agency"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/mplus_rounded_1c_regular"
+                        android:textColor="@color/black"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+        </com.google.android.material.card.MaterialCardView>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/supportChat"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/support"
-                    android:orientation="horizontal"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvSupport"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Support"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/mplus_rounded_1c_regular"
-                    android:textColor="@color/black"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/news"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/news"
-                    android:orientation="horizontal"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvNews"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="News"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/mplus_rounded_1c_regular"
-                    android:textColor="@color/black"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/agency"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/ngo"
-                    android:orientation="horizontal"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvAgency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Agency"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/mplus_rounded_1c_regular"
-                    android:textColor="@color/black"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
+            android:visibility="gone"
             android:layout_height="@dimen/_1sdp"
             android:background="#6C6969"/>
 
@@ -149,86 +162,118 @@
         <androidx.viewpager2.widget.ViewPager2
             android:layout_marginTop="@dimen/_4sdp"
             android:id="@+id/updatesBanner"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_margin="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
             />
 
         <View
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:layout_height="@dimen/_1sdp"
             android:background="#6C6969"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvSchemeStatistics"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:fontFamily="@font/mplus_rounded_1c_regular"
-            android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:textSize="@dimen/_14sdp"
-            android:textColor="@color/black"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Scheme statistics: "/>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            app:cardElevation="@dimen/_10sdp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/pink"
+            android:layout_margin="@dimen/_10sdp">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:padding="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvNoOfApplication"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
+                android:id="@+id/tvSchemeStatistics"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:text="Number of application: "/>
-
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/mplus_rounded_1c_regular"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:text="1000+ "/>
+                android:text="Scheme statistics: "/>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNoOfApplication"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:text="Number of application: "/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvNoOfVerification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/mplus_rounded_1c_regular"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:text="Number of  verifications: "/>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:lottie_rawRes="@raw/verification_no"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:text="1000+ "/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNoOfVerification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:text="Number of  verifications: "/>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:lottie_rawRes="@raw/verification_done"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:text="1000+ "/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/mplus_rounded_1c_regular"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:text="1000+ "/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
@@ -237,20 +282,21 @@
 
         <TextView
             android:id="@+id/tvLatestNews"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Latest news: "
-            android:layout_marginStart="@dimen/_5sdp"
-            android:textSize="@dimen/_12ssp"
-            android:textStyle="bold"
+            android:fontFamily="@font/mplus_rounded_1c_bold"
             android:textColor="@color/black"
-            android:fontFamily="@font/mplus_rounded_1c_bold"/>
+            android:layout_margin="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp"
+          />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvNews"
+            tools:listitem="@layout/item_news"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_160sdp"
-            android:layout_marginTop="@dimen/_10sdp"/>
+            android:layout_margin="@dimen/_10sdp"/>
 
 
 

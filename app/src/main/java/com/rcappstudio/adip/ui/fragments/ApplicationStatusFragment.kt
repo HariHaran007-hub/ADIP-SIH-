@@ -116,6 +116,9 @@ class ApplicationStatusFragment : Fragment() {
             translator.translate(binding.customToolbar.toolbar.title.toString()).addOnSuccessListener {
                 binding.customToolbar.toolbar.title = it
             }
+            translator.translate(binding.tvNoStatus.text.toString()).addOnSuccessListener {
+                binding.tvNoStatus.text = it
+            }
         }
     }
 

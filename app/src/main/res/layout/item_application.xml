@@ -50,17 +50,31 @@
                 android:textStyle="bold" />
 
 
+
+            <TextView
+                android:id="@+id/tvAidsAppliedHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:padding="@dimen/_5sdp"
+                android:text="Aids applied for:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tvAidsApplied"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_margin="@dimen/_1sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
                 android:padding="@dimen/_5sdp"
-                android:text="Aids applied for: \n\t\t\t\t\t\t1) Hearing aid\n\t\t\t\t\t\t2) Education aid"
+                android:text= "\t\t\t\t\t\t1) Hearing aid\n\t\t\t\t\t\t2) Education aid"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
-                android:textStyle="bold" />
+               />
+
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/statusCardView"

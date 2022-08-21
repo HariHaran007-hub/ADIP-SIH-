@@ -30,6 +30,7 @@ class RequestStatusAdapter(
         val campAllocated = view.findViewById<TextView>(R.id.campAllocated)
         val rvcamps = view.findViewById<RecyclerView>(R.id.rvCamps)
         val rootCardView = view.findViewById<MaterialCardView>(R.id.rootCardView)
+        val header = view.findViewById<TextView>(R.id.tvAidsAppliedHeader)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -50,16 +51,21 @@ class RequestStatusAdapter(
             holder.tvApplicationStatus.text = it
         }
 
+        translator.translate(holder.header.text.toString()).addOnSuccessListener {
+            holder.header.text = it
+
+        }
+
         translator.translate("Submitted on: ${getDateTime(requestStatus.appliedOnTimeStamp!!)}").addOnSuccessListener {
             holder.tvAppliedOn.text = it
         }
-        var aidsTextData = "\n"
+        var aidsTextData = "\t\t\t\t\t\t"
         var count = 0
         for(aid in requestStatus.aidsList!!){
             count++
             if(count == 1){
-                translator.translate("Aids applied for: $count)$aid").addOnSuccessListener {
-                    aidsTextData = aidsTextData + "\n\t\t\t\t\t\t$it"
+                translator.translate("$count)$aid").addOnSuccessListener {
+                    aidsTextData = aidsTextData + "\t\t\t\t\t\t$it"
                     holder.tvAidsApplies.text = aidsTextData
                 }
             } else {

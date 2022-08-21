@@ -68,7 +68,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         prepareModel()
         showNetworkErrorDialog()
-
+        binding.scroll.isSmoothScrollingEnabled = true
+        binding.scroll.fullScroll(View.FOCUS_DOWN)
+        binding.rvNews.isNestedScrollingEnabled = false
         init()
 
     }
@@ -252,8 +254,6 @@ class HomeFragment : Fragment() {
         translator.translate(binding.customToolBar.toolbar.title.toString()).addOnSuccessListener {
             binding.customToolBar.toolbar.title = it
         }
-
-
     }
 
 }

@@ -7,5 +7,7 @@ data class CampingModel(
     val district : String ?= null,
     val campingName : String ?= null,
     val campId : String ?= null,
-    val location : LatLng ?= null
+    val location : LatLng ?= null,
+    val address : String ?= null,
+    val number: String ?= null
 )

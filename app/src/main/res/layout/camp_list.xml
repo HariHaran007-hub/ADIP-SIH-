@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        app:cardCornerRadius="@dimen/_4sdp"
+        app:cardMaxElevation="0dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/pink"
+        app:strokeWidth="1dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:padding="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/agencyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agency name: Dindigul Camp"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/mplus_rounded_1c_bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/agencyAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address: 157, Roja street, kootrave nagar Dindigul"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/mplus_rounded_1c_bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/agencyNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile no: 8838387219"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/mplus_rounded_1c_bold"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/openLoc"
+                    android:background="@color/white"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_width="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvOpenGoogleMap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:drawablePadding="@dimen/_5sdp"
+                       android:ems="8"
+                        android:padding="@dimen/_4sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_bold"
+                        android:drawableStart="@drawable/ic_baseline_location_on_24"
+                        android:text="Click to open location in google maps"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    app:cardBackgroundColor="@color/white"
+                    android:id="@+id/dialForCall"
+                    android:background="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:ems="8"
+                        android:padding="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/mplus_rounded_1c_bold"
+                        android:drawableStart="@drawable/ic_wifi_can"
+                        android:text="Click to Call the agency"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

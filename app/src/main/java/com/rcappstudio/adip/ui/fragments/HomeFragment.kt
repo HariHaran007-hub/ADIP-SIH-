@@ -26,6 +26,7 @@ import com.rcappstudio.adip.adapter.NewsAdapter
 import com.rcappstudio.adip.adapter.SliderAdapter
 import com.rcappstudio.adip.data.model.UpdatesBanner
 import com.rcappstudio.adip.databinding.FragmentHomeBinding
+import com.rcappstudio.adip.ui.activity.AgencyActivity
 import com.rcappstudio.adip.ui.activity.ChatActivity
 import com.rcappstudio.adip.ui.activity.ProfileActivity
 import com.rcappstudio.adip.ui.news.NewsActivity
@@ -170,6 +171,9 @@ class HomeFragment : Fragment() {
 
         binding.news.setOnClickListener{
             startActivity(Intent(requireContext(), NewsActivity::class.java))
+        }
+        binding.agency.setOnClickListener {
+            startActivity(Intent(requireContext(), AgencyActivity::class.java))
         }
     }
 

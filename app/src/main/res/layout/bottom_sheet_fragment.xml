@@ -1,105 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    app:behavior_hideable="false"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheet"
+    app:behavior_peekHeight = "0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:padding="@dimen/_5sdp"
     android:layout_height="wrap_content">
 
+    <View
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.card.MaterialCardView
-        app:cardCornerRadius="@dimen/_4sdp"
-        app:cardMaxElevation="0dp"
-        app:cardElevation="0dp"
-        app:strokeColor="@color/pink"
-        app:strokeWidth="1dp"
-        app:cardBackgroundColor="@color/white"
+        android:id="@+id/materialCardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_4sdp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/pink"
+        app:strokeWidth="1dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:padding="@dimen/_5sdp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:padding="@dimen/_5sdp">
+
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/agencyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+                android:fontFamily="@font/mplus_rounded_1c_bold"
                 android:padding="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/mplus_rounded_1c_bold"/>
+                android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/agencyAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+                android:fontFamily="@font/mplus_rounded_1c_bold"
                 android:padding="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/mplus_rounded_1c_bold"/>
+                android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/agencyNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/mplus_rounded_1c_bold"
                 android:padding="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/mplus_rounded_1c_bold"/>
+                android:textColor="@color/black" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_margin="@dimen/_10sdp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp">
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/openLoc"
-                    android:background="@color/white"
-                    app:cardBackgroundColor="@color/white"
-                    android:layout_margin="@dimen/_5sdp"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@color/white"
                     android:padding="@dimen/_5sdp"
-                    android:layout_height="wrap_content">
+                    app:cardBackgroundColor="@color/white">
+
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvOpenGoogleMap"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:drawablePadding="@dimen/_5sdp"
-                       android:ems="8"
-                        android:padding="@dimen/_4sdp"
-                        android:fontFamily="@font/mplus_rounded_1c_bold"
                         android:drawableStart="@drawable/ic_baseline_location_on_24"
-                        android:text="Click to open location in google maps"/>
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:ems="8"
+                        android:fontFamily="@font/mplus_rounded_1c_bold"
+                        android:padding="@dimen/_4sdp"
+                        android:text="Click to open location in google maps"
+                        android:textColor="@color/black" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    app:cardBackgroundColor="@color/white"
                     android:id="@+id/dialForCall"
-                    android:background="@color/white"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_5sdp"
-                    android:layout_height="wrap_content">
+                    android:background="@color/white"
+                    app:cardBackgroundColor="@color/white">
+
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvCall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="8"
-                        android:padding="@dimen/_5sdp"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:fontFamily="@font/mplus_rounded_1c_bold"
                         android:drawableStart="@drawable/ic_wifi_can"
-                        android:text="Click to Call the agency"/>
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:ems="8"
+                        android:fontFamily="@font/mplus_rounded_1c_bold"
+                        android:padding="@dimen/_5sdp"
+                        android:text="Click to Call the agency"
+                        android:textColor="@color/black" />
                 </androidx.cardview.widget.CardView>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-
-
     </com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,104 +7,156 @@
     android:layout_centerHorizontal="true"
     tools:context=".ui.onboarding.SendOtpActivity">
 
-    <LinearLayout
-
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/img_send_otp"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
-            android:layout_marginTop="@dimen/_80sdp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/send_otp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:text="OTP verification"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_40sdp"
-            android:layout_marginLeft="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="50dp"
-            android:fontFamily="@font/mplus_rounded_1c_regular"
-            android:gravity="center"
-            android:text="We will send you an OTP to the registered mobile number of this UDID number"
-            android:textSize="@dimen/_12ssp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_25sdp"
-            android:layout_marginLeft="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_25sdp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:fontFamily="@font/mplus_rounded_1c_regular"
-            android:gravity="center"
-            android:text="Enter registered UDID number"
-            android:textSize="@dimen/_12ssp" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_50sdp"
-            android:layout_marginEnd="@dimen/_50sdp"
-            android:background="@drawable/background_edittext_box"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/img_send_otp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_80sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/send_otp" />
 
-            <EditText
-                android:id="@+id/input_mob_no"
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_30sdp"
-                android:background="@null"
-                android:fontFamily="@font/mplus_rounded_1c_regular"
-                android:hint="Enter your UDID number"
-                android:imeOptions="actionDone"
-                android:importantForAutofill="no"
-                android:textColor="@color/pink"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:text="OTP verification"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivUdidCard"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_margin="@dimen/_10sdp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnsend"
+                android:id="@+id/addUdidCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_enabled"
+                android:text="Add udid card"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/previewTextUDIDNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+
+
+                />
+
+            <TextView
+                android:id="@+id/previewTextPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+
+                />
+
+            <TextView
+                android:id="@+id/tvDisability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+
+                />
+
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_25sdp"
-                android:background="@drawable/bg_button_enabled"
-                android:backgroundTint="@color/pink"
-                android:text="Send OTP"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="50dp"
+                android:fontFamily="@font/mplus_rounded_1c_regular"
+                android:gravity="center"
+                android:text="We will send you an OTP to the registered mobile number of this UDID number"
+                android:textSize="@dimen/_12ssp" />
 
-            <ProgressBar
-                android:id="@+id/probar1"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_gravity="center"
-                android:visibility="gone" />
-        </FrameLayout>
-    </LinearLayout>
-</RelativeLayout>
+            <TextView
+                android:id="@+id/notHaveUdid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:fontFamily="@font/mplus_rounded_1c_bold"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:text="Not have UDID card? Click here"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginEnd="@dimen/_50sdp"
+                android:background="@drawable/background_edittext_box"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+
+                <EditText
+                    android:id="@+id/input_mob_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@null"
+                    android:fontFamily="@font/mplus_rounded_1c_regular"
+                    android:hint="Enter your UDID number"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:textColor="@color/pink"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnsend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_25sdp"
+                    android:background="@drawable/bg_button_enabled"
+                    android:backgroundTint="@color/pink"
+                    android:text="Send OTP"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/probar1"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</ScrollView>

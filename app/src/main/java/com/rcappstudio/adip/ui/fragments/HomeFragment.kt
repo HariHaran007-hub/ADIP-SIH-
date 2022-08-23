@@ -3,6 +3,7 @@ package com.rcappstudio.adip.ui.fragments
 import android.app.AlertDialog
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -47,6 +48,12 @@ class HomeFragment : Fragment() {
     private lateinit var inflater: LayoutInflater
     private lateinit var translator : Translator
     private  var toHindi : Boolean = true
+
+    val english = "en"
+    val tamil = "ta"
+    val hindi = "hi"
+    var lang = ""
+    private var voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${english}&q="
 
     private val sliderRunnable = Runnable{
         binding.updatesBanner.currentItem = binding.updatesBanner.currentItem + 1
@@ -141,7 +148,7 @@ class HomeFragment : Fragment() {
     }
     private fun initRecyclerView(){
         newsList = mutableListOf()
-        newsAdapter = NewsAdapter(requireContext() , newsList, translator)
+        newsAdapter = NewsAdapter(requireContext() , newsList, translator, voiceUrl)
         binding.rvNews.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvNews.adapter = newsAdapter
     }
@@ -200,6 +207,12 @@ class HomeFragment : Fragment() {
                 .build()
             translator = Translation.getClient(options)
 
+            if(sharedPreferences == TranslateLanguage.TAMIL)
+                voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${tamil}&q="
+            else if(sharedPreferences == TranslateLanguage.HINDI)
+                voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${hindi}&q="
+
+
             translator.downloadModelIfNeeded().addOnSuccessListener {
                 translateLanguage()
             }.addOnFailureListener {
@@ -214,14 +227,40 @@ class HomeFragment : Fragment() {
             binding.tvProfile.text = it
         }
 
+        binding.profile.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvProfile.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
         translator.translate(binding.tvSupport.text.toString()).addOnSuccessListener {
             Log.d("tabData", "translateLanguage: $it")
             binding.tvSupport.text = it
         }
 
+        binding.supportChat.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvSupport.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
+
+
         translator.translate(binding.tvNews.text.toString()).addOnSuccessListener {
             Log.d("tabData", "translateLanguage: $it")
             binding.tvNews.text = it
+        }
+
+        binding.news.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvNews.text.toString())
+            mp.prepare()
+            mp.start()
+            true
         }
 
         translator.translate(binding.tvAgency.text.toString()).addOnSuccessListener {
@@ -229,9 +268,25 @@ class HomeFragment : Fragment() {
             binding.tvAgency.text = it
         }
 
+        binding.agency.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvAgency.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
         translator.translate(binding.tvRequestStatus.text.toString()).addOnSuccessListener {
             Log.d("tabData", "translateLanguage: $it")
             binding.tvRequestStatus.text = it
+        }
+
+        binding.tvRequestStatus.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvRequestStatus.text.toString())
+            mp.prepare()
+            mp.start()
+            true
         }
 
         translator.translate(binding.tvLatestNews.text.toString()).addOnSuccessListener {
@@ -239,24 +294,63 @@ class HomeFragment : Fragment() {
             binding.tvLatestNews.text = it
         }
 
+        binding.tvLatestNews.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvLatestNews.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
         translator.translate(binding.tvSchemeStatistics.text.toString()).addOnSuccessListener {
             Log.d("tabData", "translateLanguage: $it")
             binding.tvSchemeStatistics.text = it
         }
+        binding.tvSchemeStatistics.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvSchemeStatistics.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
 
         translator.translate(binding.tvNoOfApplication.text.toString()).addOnSuccessListener {
             Log.d("tabData", "translateLanguage: $it")
             binding.tvNoOfApplication.text = it
         }
 
-        translator.translate(binding.tvNoOfVerification.text.toString()).addOnSuccessListener {
+        binding.tvNoOfApplication.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvNoOfApplication.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
 
+        translator.translate(binding.tvNoOfVerification.text.toString()).addOnSuccessListener {
             Log.d("tabData", "translateLanguage: $it")
             binding.tvNoOfVerification.text = it
         }
 
+        binding.tvNoOfVerification.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvNoOfVerification.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
         translator.translate(binding.customToolBar.toolbar.title.toString()).addOnSuccessListener {
             binding.customToolBar.toolbar.title = it
+        }
+
+        binding.customToolBar.toolbar.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.customToolBar.toolbar.title.toString())
+            mp.prepare()
+            mp.start()
+            true
         }
     }
 

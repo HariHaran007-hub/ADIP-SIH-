@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.rcappstudio.adip.OcrActivity
 import com.rcappstudio.adip.R
 import com.rcappstudio.adip.databinding.ActivityDetailsCollectingBinding
+import com.rcappstudio.adip.ui.activity.ProfileActivity
 import com.rcappstudio.adip.utils.Constants
 import java.util.*
 
@@ -290,13 +291,15 @@ class DetailsCollectingActivity : AppCompatActivity() {
     }
 
     private fun checkDataValidity(){
-        val intent = Intent(applicationContext, OcrActivity::class.java)
+        val intent = Intent(applicationContext, UploadProfileActivity::class.java)
         intent.putExtra(NAME, binding.etName.text.toString())
         intent.putExtra(UDID_NUMBER, udidNumber)
         intent.putExtra(DATE_OF_BIRTH, binding.datePicker.text.toString())
         intent.putExtra(STATE, binding.stateSpinner.selectedItem.toString())
         intent.putExtra(DISTRICT, binding.districtSpinner.selectedItem.toString())
         intent.putExtra(MOBILE_NO, mobileNo.toString())
+        intent.putExtra("disabilityCategory", getIntent().getStringExtra("disabilityCategory"))
+        intent.putExtra("percentageOfDisability", getIntent().getStringExtra("percentageOfDisability"))
         startActivity(intent)
 
 //        FirebaseDatabase.getInstance().getReference("${Constants.UDID_NO_LIST}/${udidNumber}")

@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/_60ssp"
             android:fontFamily="@font/mplus_rounded_1c_extra_bold"
-            android:text="ADIP regestration Portal"
+            android:text="ADIP Seva"
             android:textColor="@color/black"
             android:textSize="@dimen/_16ssp" />
 

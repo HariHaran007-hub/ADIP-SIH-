@@ -9,5 +9,5 @@ data class CampingModel(
     val campId : String ?= null,
     val location : LatLng ?= null,
     val address : String ?= null,
-    val number: String ?= null
+    val mobileNo: String ?= null
 )

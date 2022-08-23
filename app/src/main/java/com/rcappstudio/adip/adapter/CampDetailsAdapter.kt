@@ -3,6 +3,7 @@ package com.rcappstudio.adip.adapter
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,8 +49,8 @@ class CampDetailsAdapter(
                 holder.address.text = it
             }
         }
-        if (camp.number != null) {
-            translator.translate("Mobile number: " + camp.number).addOnSuccessListener {
+        if (camp.mobileNo != null) {
+            translator.translate("Mobile number: " + camp.mobileNo).addOnSuccessListener {
                 holder.agencyNumber.text = it
             }
         }
@@ -68,17 +69,21 @@ class CampDetailsAdapter(
                     "http://maps.google.com/maps?daddr=${camp.location!!.lat},${camp.location.lng}" + "(" + "Nearest implementation agency" + ")"
                 val gmmIntentUri = Uri.parse(uri)
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                mapIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
                 mapIntent.setPackage("com.google.android.apps.maps")
-                context.startActivity(mapIntent)
+                startActivity(context , mapIntent , null)
+
             } else {
                 Toast.makeText(context, "Location will be updated soon", Toast.LENGTH_LONG).show()
             }
         }
 
         holder.dialcall.setOnClickListener {
-            if(camp.number != null){
+
+            if(camp.mobileNo != null){
                 val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = Uri.parse("tel:${camp.number}")
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.data = Uri.parse("tel:${camp.mobileNo}")
                 context.startActivity(intent)
             } else{
                 Toast.makeText(context, "Number will be updated soon", Toast.LENGTH_LONG).show()

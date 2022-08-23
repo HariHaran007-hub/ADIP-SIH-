@@ -47,6 +47,7 @@ class UploadProfileActivity : AppCompatActivity() {
     private lateinit var district: String
     private lateinit var mobileNo: String
     private lateinit var disabilityCategory : String
+    private lateinit var percentageOfDisability : String
 
 
     private var imageURI: Uri? = null
@@ -83,6 +84,8 @@ class UploadProfileActivity : AppCompatActivity() {
         district = intent.getStringExtra(DetailsCollectingActivity.DISTRICT)!!
         mobileNo = intent.getStringExtra(DetailsCollectingActivity.MOBILE_NO)!!
         disabilityCategory = intent.getStringExtra("disabilityCategory")!!
+        percentageOfDisability = intent.getStringExtra("percentageOfDisability")!!
+
     }
 
     private fun clickListener() {
@@ -153,7 +156,8 @@ class UploadProfileActivity : AppCompatActivity() {
             district,
 //            false,
             imageUrl,
-            disabilityCategory
+            disabilityCategory,
+            percentageOfDisability
         )
 
         val userIdList = UserIdList(state, district)

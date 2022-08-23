@@ -63,7 +63,7 @@
                     android:id="@+id/tvRegistration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Registration portal"
+                    android:text="Application portal"
                     android:textSize="@dimen/_20ssp"
                     android:textAlignment="center"
                     android:textColor="@color/black"

@@ -37,6 +37,7 @@
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_upload_aids_registration_details.xml" value="0.2" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_upload_profile.xml" value="0.2" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/activity_web_view.xml" value="0.21927083333333333" />
+        <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/bottom_sheet_fragment.xml" value="0.2" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/camp_list.xml" value="0.264" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/camping_location.xml" value="0.264" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/confirmation_dialog.xml" value="0.21927083333333333" />
@@ -46,7 +47,7 @@
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_application_status.xml" value="0.2" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_news.xml" value="0.2" />
-        <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_ngo_maps.xml" value="0.21927083333333333" />
+        <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_ngo_maps.xml" value="0.264" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/fragment_registration_category.xml" value="0.2" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/imagepreview_dialog.xml" value="0.21927083333333333" />
         <entry key="..\:/Smart India Hackathon Project/ADIP/app/src/main/res/layout/item_agency.xml" value="0.264" />

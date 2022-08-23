@@ -18,6 +18,9 @@ class NewsActivity : AppCompatActivity() {
     private lateinit var newsList: MutableList<NewsModel>
     private lateinit var translator : Translator
 
+    private var voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=en&q="
+
+
     private lateinit var binding : ActivityNewsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +35,7 @@ class NewsActivity : AppCompatActivity() {
 
     private fun initRecyclerView(){
         newsList = mutableListOf()
-        newsAdapter = NewsAdapter(applicationContext , newsList, translator)
+        newsAdapter = NewsAdapter(applicationContext , newsList, translator , voiceUrl )
         binding.rvNews.layoutManager = LinearLayoutManager(applicationContext)
         binding.rvNews.adapter = newsAdapter
     }

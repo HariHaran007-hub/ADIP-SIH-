@@ -106,6 +106,8 @@ class OtpVerification : AppCompatActivity() {
                                             val intent = Intent(applicationContext,DetailsCollectingActivity::class.java)
                                             intent.putExtra("mobile", mobileNo)
                                             intent.putExtra("udidNumber", getIntent().getStringExtra("udidNumber"))
+                                            intent.putExtra("percentageOfDisability", getIntent().getStringExtra("percentageOfDisability"))
+                                            intent.putExtra("disabilityCategory", getIntent().getStringExtra("disabilityCategory"))
                                             startActivity(intent)
                                             finish()
                                         }

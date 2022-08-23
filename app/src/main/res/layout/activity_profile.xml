@@ -12,7 +12,7 @@
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginTop="@dimen/_50sdp"
-        android:src="@drawable/elon"
+        android:src="@drawable/no_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -130,12 +130,12 @@
 
     <TextView
         android:id="@+id/tvStateSpinner"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:padding="6dp"
-        android:text="State"
+        android:text="Select Language"
         android:textColor="@color/black"
         android:textSize="@dimen/_16sdp"
         app:layout_constraintBottom_toTopOf="@+id/textView3"

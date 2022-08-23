@@ -38,7 +38,9 @@ class NewsFragment : Fragment() {
 
     private fun initRecyclerView(){
         newsList = mutableListOf()
-        newsAdapter = NewsAdapter(requireContext() , newsList, translator, )
+         var voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=en&q="
+
+        newsAdapter = NewsAdapter(requireContext() , newsList, translator,voiceUrl )
         binding.rvNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNews.adapter = newsAdapter
     }

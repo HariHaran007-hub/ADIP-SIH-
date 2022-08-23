@@ -230,7 +230,7 @@
                     android:fontFamily="@font/mplus_rounded_1c_regular"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:text="1000+ "/>
+                    android:text="22 "/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -264,7 +264,7 @@
                     android:fontFamily="@font/mplus_rounded_1c_regular"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:text="1000+ "/>
+                    android:text="18 "/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>

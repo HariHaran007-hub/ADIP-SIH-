@@ -2,30 +2,28 @@ package com.rcappstudio.adip.ui.registrationportal
 
 import android.Manifest
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.speech.tts.TextToSpeech
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.androidbuts.multispinnerfilter.KeyPairBoolData
 import com.androidbuts.multispinnerfilter.MultiSpinnerListener
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
@@ -37,7 +35,6 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
-import com.rcappstudio.adip.data.model.NgoData
 import com.rcappstudio.adip.data.model.RequestStatus
 import com.rcappstudio.adip.data.model.VerificationApplied
 import com.rcappstudio.adip.databinding.ConfirmationDialogBinding
@@ -47,9 +44,16 @@ import com.rcappstudio.adip.utils.LoadingDialog
 import com.rcappstudio.adip.utils.snakeToLowerCamelCase
 import java.util.*
 
-class RegistrationCategoryFragment : Fragment() {
+
+class RegistrationCategoryFragment : Fragment() , TextToSpeech.OnInitListener{
 
     private lateinit var fBinding: ConfirmationDialogBinding
+    val english = "en"
+    val tamil = "ta"
+    val hindi = "hi"
+    private var voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${tamil}&q="
+
+    private var tts : TextToSpeech ?= null
 
     private var aidsCount = 0
     private var validCount = 0
@@ -98,13 +102,14 @@ class RegistrationCategoryFragment : Fragment() {
     ): View {
 
         binding = FragmentRegistrationCategoryBinding.inflate(layoutInflater)
-        binding.customToolBar.toolbar.title = "Registration portal"
+        binding.customToolBar.toolbar.title = "Application portal"
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingDialog = LoadingDialog(requireActivity(), "Loading portal info....")
+        tts = TextToSpeech(requireContext(), this)
         //loadingDialog.startLoading()
         Log.d(
             "aidsList",
@@ -550,6 +555,10 @@ class RegistrationCategoryFragment : Fragment() {
                 .setTargetLanguage(sharedPreferences)
                 .build()
             translator = Translation.getClient(options)
+            if(sharedPreferences == TranslateLanguage.TAMIL)
+                voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${tamil}&q="
+            else if(sharedPreferences == TranslateLanguage.HINDI)
+                voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${hindi}&q="
 
             translator.downloadModelIfNeeded().addOnSuccessListener {
                 translateLanguage()
@@ -557,56 +566,171 @@ class RegistrationCategoryFragment : Fragment() {
 
             }
             translator.translate(binding.customToolBar.toolbar.title.toString()).addOnSuccessListener {
+
                 binding.customToolBar.toolbar.title = it
             }
         }
     }
 
     private fun translateLanguage(){
+
         translator.translate(binding.tvRegistration.text.toString()).addOnSuccessListener {
             binding.tvRegistration.text = it
+        }
+
+        binding.tvRegistration.setOnLongClickListener {
+                val mp = MediaPlayer()
+                mp.setDataSource(voiceUrl + binding.tvRegistration.text.toString())
+                mp.prepare()
+                mp.start()
+                true
         }
         translator.translate(binding.selectTv.text.toString()).addOnSuccessListener {
             binding.selectTv.text = it
         }
 
+        binding.selectTv.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.selectTv.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
+
         translator.translate(binding.btnContinue.text.toString()).addOnSuccessListener {
             binding.btnContinue.text = it
         }
 
+
+        binding.btnContinue.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.btnContinue.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
         translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
             binding.btnContinue.text = it
+        }
+        binding.btnUploadData.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.btnUploadData.text.toString())
+            mp.prepare()
+            mp.start()
+            true
         }
 
-        translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
-            binding.btnContinue.text = it
-        }
 
-        translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
-            binding.btnContinue.text = it
-        }
+//        translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
+//            binding.btnContinue.text = it
+//        }
+
+//        translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
+//            binding.btnContinue.text = it
+//        }
 
         translator.translate(binding.tvIncomeCertificate.text.toString()).addOnSuccessListener {
             binding.tvIncomeCertificate.text = it
+        }
+
+        binding.tvIncomeCertificate.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvIncomeCertificate.text.toString())
+            mp.prepare()
+            mp.start()
+            true
         }
 
         translator.translate(binding.tvIncomeCertificatePara.text.toString()).addOnSuccessListener {
             binding.tvIncomeCertificatePara.text = it
         }
 
+        binding.tvIncomeCertificatePara.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvIncomeCertificatePara.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
         translator.translate(binding.addIncomeCertificate.text.toString()).addOnSuccessListener {
             binding.addIncomeCertificate.text = it
+        }
+
+        binding.addIncomeCertificate.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.addIncomeCertificate.text.toString())
+            mp.prepare()
+            mp.start()
+            true
         }
 
         translator.translate(binding.tvStatus.text.toString()).addOnSuccessListener {
             binding.tvStatus.text = it
         }
+
+        binding.tvStatus.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.tvStatus.text.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
         translator.translate(binding.btnUploadData.text.toString()).addOnSuccessListener {
             binding.btnContinue.text = it
+        }
+
+        binding.btnUploadData.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.btnUploadData.text.toString())
+            mp.prepare()
+            mp.start()
+            true
         }
         translator.translate(binding.multipleItemSelectionSpinner.hintText.toString()).addOnSuccessListener {
             binding.multipleItemSelectionSpinner.hintText = it
         }
 
+        binding.multipleItemSelectionSpinner.setOnLongClickListener {
+            val mp = MediaPlayer()
+            mp.setDataSource(voiceUrl + binding.multipleItemSelectionSpinner.hintText.toString())
+            mp.prepare()
+            mp.start()
+            true
+        }
+
     }
+
+    override fun onInit(status: Int) {
+
+
+
+
+        if (status === TextToSpeech.SUCCESS) {
+
+            val result: Int = tts!!.setLanguage(Locale("hi", "IN"))
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    tts!!.language = Locale.forLanguageTag("hin")
+                } else {
+                    //  Toast.makeText(mContext, result + "Language is not supported", Toast.LENGTH_SHORT).show();
+                    Log.e("Text2SpeechWidget", result.toString() + "Language is not supported")
+                }
+                Log.e("Text2SpeechWidget", "$result is not supported")
+            }
+
+//            if ("en".toLowerCase().contains("en")) {
+//                val result: Int = tts.setLanguage(Locale("en", "IN"))
+//                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+//                    //Toast.makeText(mContext, result + " is not supported", Toast.LENGTH_SHORT).show();
+//                    Log.e("Text2SpeechWidget", "$result is not supported")
+//                }
+//            } else {
+//
+//            }
+//        }
+    }
+}
 }

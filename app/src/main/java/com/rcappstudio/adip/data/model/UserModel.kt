@@ -11,5 +11,6 @@ data class UserModel(
 //    val aidsVerificationDocs  : HashMap<String , AidsDoc> ?= null,
 //    val requestStatus : HashMap<String , RequestStatus> ?= null,
     val profileImageUrl : String ?= null,
-    val disabilityCategory : String ?= null
+    val disabilityCategory : String ?= null,
+    val percentageOfDisability  :String ?= null
 )

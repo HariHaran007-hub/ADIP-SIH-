@@ -48,6 +48,8 @@ class UploadProfileActivity : AppCompatActivity() {
     private lateinit var mobileNo: String
     private lateinit var disabilityCategory : String
     private lateinit var percentageOfDisability : String
+    private lateinit var category : String
+    private lateinit var gender : String
 
 
     private var imageURI: Uri? = null
@@ -79,13 +81,14 @@ class UploadProfileActivity : AppCompatActivity() {
     private fun getIntentData() {
         name = intent.getStringExtra(DetailsCollectingActivity.NAME)!!
         udidNo = intent.getStringExtra(DetailsCollectingActivity.UDID_NUMBER)!!
-        dateOfBirth = intent.getStringExtra(DetailsCollectingActivity.DATE_OF_BIRTH)!!
+        dateOfBirth = intent.getStringExtra("dob")!!
         state = intent.getStringExtra(DetailsCollectingActivity.STATE)!!
         district = intent.getStringExtra(DetailsCollectingActivity.DISTRICT)!!
         mobileNo = intent.getStringExtra(DetailsCollectingActivity.MOBILE_NO)!!
+        category = intent.getStringExtra("category")!!
+        gender = intent.getStringExtra("gender")!!
         disabilityCategory = intent.getStringExtra("disabilityCategory")!!
         percentageOfDisability = intent.getStringExtra("percentageOfDisability")!!
-
     }
 
     private fun clickListener() {
@@ -147,17 +150,22 @@ class UploadProfileActivity : AppCompatActivity() {
         val pref = applicationContext.getSharedPreferences(SHARED_PREF_FILE, MODE_PRIVATE)
         val userProfilePath = pref.getString(USER_PROFILE_PATH, null)
 
+        val latLng = LatLng(getIntent().getStringExtra("lat") , getIntent().getStringExtra("lng"), "$state, $district")
+
         val userModel = UserModel(
-            name,
-            mobileNo,
-            udidNo,
-            dateOfBirth,
-            state,
-            district,
+            name = name,
+            mobileNo = mobileNo,
+            udidNo = udidNo,
+            dateOfBirth = dateOfBirth,
+            state = state,
+            district = district,
 //            false,
-            imageUrl,
-            disabilityCategory,
-            percentageOfDisability
+            profileImageUrl=  imageUrl,
+            disabilityCategory = disabilityCategory,
+            percentageOfDisability = percentageOfDisability,
+            gender = gender,
+            category= category,
+            location = latLng
         )
 
         val userIdList = UserIdList(state, district)

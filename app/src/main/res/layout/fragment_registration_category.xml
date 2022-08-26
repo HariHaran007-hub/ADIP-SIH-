@@ -47,8 +47,19 @@
                 android:textAlignment="center"
                 android:padding="@dimen/_10sdp"
                 android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+/>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvStatus2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12ssp"
+                android:textColor="@color/pink"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:padding="@dimen/_10sdp"
+                android:fontFamily="@font/mplus_rounded_1c_extra_bold"
                 android:text="Already uploaded please see status bar for more information."/>
-
 
             <LinearLayout
                 android:id="@+id/llLayout"
@@ -193,6 +204,7 @@
 
                 <TextView
                     android:id="@+id/selectTv"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Select your respective aids"
@@ -205,12 +217,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_margin="@dimen/_10sdp"
+                    android:visibility="gone"
                     app:hintText="Select respective aids: " />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_margin="@dimen/_10sdp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/llIvCertificate"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -273,6 +286,144 @@
                                 android:textColor="@color/black"
                                 />
 
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:visibility="visible"
+                    android:id="@+id/aadhaarCardRootLayout"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:strokeWidth="@dimen/_1sdp"
+                    app:strokeColor="@color/pink">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:padding="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:cropToPadding="true"
+                            android:id="@+id/ivAadhaarCard"
+                            android:src="@drawable/elon"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="match_parent"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+
+
+                            <TextView
+                                android:id="@+id/tvAadhaarCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Aadhaar card"
+                                android:padding="@dimen/_5sdp"
+                                android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                                android:textColor="@color/black"
+                                android:layout_margin="@dimen/_5sdp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tvAadhaarCardPara"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/black"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:fontFamily="@font/mplus_rounded_1c_regular"
+                                android:text="Aadhaar card ios an Indian identification system"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/addAadhaarCard"
+                                android:drawableStart="@drawable/ic_baseline_image_24"
+                                android:layout_gravity="center"
+                                android:background="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Add aadhaar card"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:layout_margin="@dimen/_5sdp"
+                                app:fontFamily="@font/mplus_rounded_1c_regular"
+                                android:textColor="@color/black"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:visibility="visible"
+                    android:id="@+id/disabilityCertificateRootLayout"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:strokeWidth="@dimen/_1sdp"
+                    app:strokeColor="@color/pink">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:padding="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:cropToPadding="true"
+                            android:id="@+id/ivDisabilityCertificate"
+                            android:src="@drawable/elon"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="match_parent"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+
+
+                            <TextView
+                                android:id="@+id/tvDisability"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Disability certificate"
+                                android:padding="@dimen/_5sdp"
+                                android:fontFamily="@font/mplus_rounded_1c_extra_bold"
+                                android:textColor="@color/black"
+                                android:layout_margin="@dimen/_5sdp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tvDisabilityPara"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/black"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:fontFamily="@font/mplus_rounded_1c_regular"
+                                android:text="Disability certificate is used to identify the disability of the particular person."/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/addDisabilityCertificate"
+                                android:drawableStart="@drawable/ic_baseline_image_24"
+                                android:layout_gravity="center"
+                                android:background="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Add aadhaar card"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:layout_margin="@dimen/_5sdp"
+                                app:fontFamily="@font/mplus_rounded_1c_regular"
+                                android:textColor="@color/black"
+                                />
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

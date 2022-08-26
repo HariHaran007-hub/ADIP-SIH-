@@ -60,6 +60,10 @@ class SendOtpActivity : AppCompatActivity() {
     private lateinit var hearingDisability : String
     private lateinit var mentalDisability : String
 
+    private lateinit var gender : String
+    private lateinit var category: String
+    private lateinit var dob : String
+
 
 
     val orthopedicDisabilityConst = "Orthopedic disability"
@@ -94,8 +98,11 @@ class SendOtpActivity : AppCompatActivity() {
 
 
         binding.btnsend.setOnClickListener{
-            if(udidNumber.isNotEmpty())
+            val percentile = percentageOfDisability.split('%')[0].toInt()
+
+            if(udidNumber.isNotEmpty() && percentile >= 40){
                 fetchXmlData()
+            }
         }
 
         binding.notHaveUdid.setOnClickListener {
@@ -135,6 +142,9 @@ class SendOtpActivity : AppCompatActivity() {
                                 .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
                                 .build()
                             mobileNumber = mobileNo
+                            category = document!!.documentElement.getElementsByTagName("Person").item(0).attributes.getNamedItem("category").nodeValue
+                            gender = document!!.documentElement.getElementsByTagName("Person").item(0).attributes.getNamedItem("gender").nodeValue
+                            dob = document!!.documentElement.getElementsByTagName("Person").item(0).attributes.getNamedItem("dob").nodeValue
                             udidNumber = udid
                             loadingDialog.startLoading()
                             PhoneAuthProvider.verifyPhoneNumber(options)
@@ -228,6 +238,9 @@ class SendOtpActivity : AppCompatActivity() {
             intent.putExtra("udidNumber", udidNumber)
             intent.putExtra("percentageOfDisability", percentageOfDisability)
             intent.putExtra("disabilityCategory", binding.tvDisability.text.toString())
+            intent.putExtra("gender", gender)
+            intent.putExtra("category" , category)
+            intent.putExtra("dob", dob)
             startActivity(intent)
             finish()
             Toast.makeText(this@SendOtpActivity, "Code sent!!", Toast.LENGTH_SHORT).show()

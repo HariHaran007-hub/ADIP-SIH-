@@ -2,6 +2,7 @@ package com.rcappstudio.adip.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,8 @@ import org.w3c.dom.Text
 class AgenciesAdapter (
     val context : Context,
     val ngoList : List<NgoData>,
-    private var translator : Translator
+    private var translator : Translator,
+    val voiceUrl : String
         ) : RecyclerView.Adapter<AgenciesAdapter.ViewHolder>(){
 
     class ViewHolder(view : View)  : RecyclerView.ViewHolder(view){
@@ -56,6 +58,10 @@ class AgenciesAdapter (
                     translator.translate("Agency name: "+ ngo!!.campingName.toString()).addOnSuccessListener {
                         holder.agencyName.text = it
                     }
+                    holder.agencyName.setOnLongClickListener {
+                        playAudio(holder.agencyName.text.toString())
+                        true
+                    }
                   holder.googleMapButton.setOnClickListener {
                       if(ngo.location != null){
                           val uri =
@@ -81,18 +87,32 @@ class AgenciesAdapter (
                     holder.aidsList.text  =aidsText
                     count++
                 }
+
             } else {
                 translator.translate(aid).addOnSuccessListener {
                     aidsText += it+", "
                     holder.aidsList.text  =aidsText
                 }
-            }
 
+            }
+        }
+
+        holder.aidsList.setOnLongClickListener {
+            playAudio(aidsText)
+            true
         }
 
     }
 
     override fun getItemCount(): Int {
         return ngoList.size
+    }
+
+    private fun playAudio(text : String) {
+        val mp = MediaPlayer()
+        mp.setDataSource(voiceUrl + text)
+        mp.prepare()
+        mp.start()
+
     }
 }

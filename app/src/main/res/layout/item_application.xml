@@ -56,6 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:visibility="gone"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
                 android:padding="@dimen/_5sdp"
                 android:text="Aids applied for:"
@@ -70,12 +71,19 @@
                 android:layout_margin="@dimen/_1sdp"
                 android:fontFamily="@font/mplus_rounded_1c_regular"
                 android:padding="@dimen/_5sdp"
+                android:textStyle="bold"
                 android:text= "\t\t\t\t\t\t1) Hearing aid\n\t\t\t\t\t\t2) Education aid"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                />
 
+            <com.anton46.stepsview.StepsView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/stepsView"
 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/statusCardView"
                 android:layout_width="match_parent"
@@ -100,6 +108,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+
                 android:id="@+id/campAllocated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

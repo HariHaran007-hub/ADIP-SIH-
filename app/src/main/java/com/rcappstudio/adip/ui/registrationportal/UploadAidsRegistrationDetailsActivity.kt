@@ -378,8 +378,9 @@ class UploadAidsRegistrationDetailsActivity : AppCompatActivity() {
            disabilityImageUrl,
            passportSizeImageUrl,
            incomeCertificateImageUrl,
-           identityProofImageUrl,
-           addressProofImageUrl,
+//           identityProofImageUrl,
+//           addressProofImageUrl,
+//            addressProofImageUrl
 
         )
         databaseReference

@@ -1,12 +1,15 @@
 package com.rcappstudio.adip.ui.onboarding
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.icu.text.DateFormat.DAY
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -14,9 +17,16 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.database.FirebaseDatabase
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.rcappstudio.adip.OcrActivity
 import com.rcappstudio.adip.R
+import com.rcappstudio.adip.data.model.LatLng
 import com.rcappstudio.adip.databinding.ActivityDetailsCollectingBinding
 import com.rcappstudio.adip.ui.activity.ProfileActivity
 import com.rcappstudio.adip.utils.Constants
@@ -37,6 +47,9 @@ class DetailsCollectingActivity : AppCompatActivity() {
     private lateinit var mobileNo : String
     private lateinit var udidNumber : String
 
+    var lat : String ?= null
+    var lng : String ?= null
+
 
     private lateinit var binding : ActivityDetailsCollectingBinding
 
@@ -50,6 +63,7 @@ class DetailsCollectingActivity : AppCompatActivity() {
         setSpinnerLayout()
         clickListener()
         initDatePicker()
+        mapPermissionChecker()
     }
 
 
@@ -252,6 +266,66 @@ class DetailsCollectingActivity : AppCompatActivity() {
         }
     }
 
+    private fun mapPermissionChecker() {
+        Dexter.withContext(this)
+            .withPermissions(
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+            .withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                    //TODO: Fetch gps location
+                    updateLocation()
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permissions: List<PermissionRequest?>?,
+                    token: PermissionToken?
+                ) {
+                    showRationalDialogForPermissions()
+                }
+            }).check()
+    }
+
+
+    @SuppressLint("MissingPermission")
+    private fun updateLocation() {
+        val fusedLocationProvider =
+            LocationServices.getFusedLocationProviderClient(this)
+
+        fusedLocationProvider.lastLocation.addOnSuccessListener {
+            if (it != null) {
+                val geoCoder = Geocoder(this)
+                val currentLocation = geoCoder.getFromLocation(it.latitude, it.longitude, 1)
+                lat =  (it.latitude).toString()
+                lng = (it.longitude).toString()
+//                val latLng = LatLng(
+//                    (it.latitude).toString(), (it.longitude).toString(),
+//                    currentLocation.first().locality + ", " + currentLocation.first().adminArea
+//                )
+            }
+        }
+
+    }
+
+    private fun showRationalDialogForPermissions() {
+        AlertDialog.Builder(this).setMessage("Please enable the required permissions")
+            .setPositiveButton("GO TO SETTINGS")
+            { _, _ ->
+                try {
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val uri = Uri.fromParts("package", packageName, null)
+                    intent.data = uri
+                    startActivity(intent)
+                } catch (e: ActivityNotFoundException) {
+                    e.printStackTrace()
+                }
+            }.setNegativeButton("Cancel")
+            { dialog, _ ->
+                dialog.dismiss()
+            }.show()
+    }
+
     private fun clickListener(){
         binding.notHaveUdid.setOnClickListener {
 //            startActivity(Intent(applicationContext , WebViewActivity::class.java))
@@ -260,7 +334,6 @@ class DetailsCollectingActivity : AppCompatActivity() {
         binding.datePicker.setOnClickListener{
             openDatePicker(binding.root)
         }
-
         binding.btnContine.setOnClickListener {
             validateForm()
         }
@@ -274,11 +347,11 @@ class DetailsCollectingActivity : AppCompatActivity() {
             return
         }
 
-        if(binding.datePicker.text.isNullOrEmpty()){
-            binding.datePicker.requestFocus()
-            binding.datePicker.error = "Date Required"
-            return
-        }
+//        if(binding.datePicker.text.isNullOrEmpty()){
+//            binding.datePicker.requestFocus()
+//            binding.datePicker.error = "Date Required"
+//            return
+//        }
 
         if(binding.stateSpinner.selectedItem.toString() == "State"){
             binding.tvStateSpinner.requestFocus()
@@ -300,6 +373,11 @@ class DetailsCollectingActivity : AppCompatActivity() {
         intent.putExtra(MOBILE_NO, mobileNo.toString())
         intent.putExtra("disabilityCategory", getIntent().getStringExtra("disabilityCategory"))
         intent.putExtra("percentageOfDisability", getIntent().getStringExtra("percentageOfDisability"))
+        intent.putExtra("category", getIntent().getStringExtra("category"))
+        intent.putExtra("gender", getIntent().getStringExtra("gender"))
+        intent.putExtra("dob", getIntent().getStringExtra("dob"))
+        intent.putExtra("lat" , lat)
+        intent.putExtra("lng" , lng)
         startActivity(intent)
 
 //        FirebaseDatabase.getInstance().getReference("${Constants.UDID_NO_LIST}/${udidNumber}")

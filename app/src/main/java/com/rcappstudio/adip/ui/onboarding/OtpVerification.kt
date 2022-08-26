@@ -108,6 +108,9 @@ class OtpVerification : AppCompatActivity() {
                                             intent.putExtra("udidNumber", getIntent().getStringExtra("udidNumber"))
                                             intent.putExtra("percentageOfDisability", getIntent().getStringExtra("percentageOfDisability"))
                                             intent.putExtra("disabilityCategory", getIntent().getStringExtra("disabilityCategory"))
+                                            intent.putExtra("category", getIntent().getStringExtra("category"))
+                                            intent.putExtra("gender", getIntent().getStringExtra("gender"))
+                                            intent.putExtra("dob", getIntent().getStringExtra("dob"))
                                             startActivity(intent)
                                             finish()
                                         }

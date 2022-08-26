@@ -36,6 +36,13 @@ class ApplicationStatusFragment : Fragment() {
     private lateinit var district : String
     private lateinit var userId: String
     private lateinit var loadingDialog: LoadingDialog
+    private lateinit var disabilityCategory : String
+
+    val english = "en"
+    val tamil = "ta"
+    val hindi = "hi"
+
+    private var voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${tamil}&q="
 
     private lateinit var translator : Translator
 
@@ -63,7 +70,14 @@ class ApplicationStatusFragment : Fragment() {
         district = pref.getString(Constants.DISTRICT, null)!!
         userId = FirebaseAuth.getInstance().uid.toString()
         databaseReference = FirebaseDatabase.getInstance().getReference(userPath)
-        loadDatabase()
+        databaseReference.get().addOnSuccessListener { snapshot->
+            if(snapshot.exists()){
+                val userModel = snapshot.getValue(UserModel::class.java)
+                disabilityCategory = userModel?.disabilityCategory!!
+                loadDatabase()
+            }
+        }
+
     }
 
     private fun loadDatabase(){
@@ -76,9 +90,9 @@ class ApplicationStatusFragment : Fragment() {
                     binding.rvRequestStatus.visibility = View.VISIBLE
                     binding.lottieFile.visibility = View.GONE
                     binding.tvNoStatus.visibility = View.GONE
-
                     for(c in snapshot.children){
                         val value = c.getValue(RequestStatus::class.java)
+
                         requestStatusList.add(value!!)
                     }
 
@@ -95,7 +109,7 @@ class ApplicationStatusFragment : Fragment() {
 
     private fun initRecyclerView(requestStatusList : MutableList<RequestStatus>){
         binding.rvRequestStatus.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
-        binding.rvRequestStatus.adapter = RequestStatusAdapter(requireContext(), requestStatusList, translator)
+        binding.rvRequestStatus.adapter = RequestStatusAdapter(requireContext(), requestStatusList, translator, voiceUrl, disabilityCategory)
     }
 
 
@@ -107,6 +121,11 @@ class ApplicationStatusFragment : Fragment() {
                 .setSourceLanguage(TranslateLanguage.ENGLISH)
                 .setTargetLanguage(sharedPreferences)
                 .build()
+
+            if(sharedPreferences == TranslateLanguage.TAMIL)
+                voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${tamil}&q="
+            else if(sharedPreferences == TranslateLanguage.HINDI)
+                voiceUrl = "https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=${hindi}&q="
             translator = Translation.getClient(options)
 
             translator.downloadModelIfNeeded().addOnSuccessListener {
@@ -121,6 +140,8 @@ class ApplicationStatusFragment : Fragment() {
             }
         }
     }
+
+
 
 
 }
